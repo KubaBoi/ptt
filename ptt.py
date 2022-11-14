@@ -62,6 +62,14 @@ def install():
 		print("ERROR:", e)
 		print("Installation was not successfull")
 		print("Make sure you run script as super user")
+		return
+	
+	print("Downloading latest manual...")
+	req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.1")
+	if (req.status_code == 200):
+		print("Installing manual...")
+	else:
+		print("Latest manual was not downloaded. 'man ptt' may not be functional")
 
 def compile(script_path, compiler, compiler_args):
 	ret = subprocess.call([compiler, *compiler_args, script_path, "-o", script_path + ".out"])
