@@ -19,9 +19,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.9' # install the python version needed
-      
-      - name: Install dependecies
-      	run: apt install pandoc
 
       - name: Promote version
         id: promote
@@ -29,10 +26,17 @@ jobs:
           output=$(python3 .github/promote.py)
           echo "::set-output name=commitMessage::$output"
 
-      - name: Man build
-        run: |
-          pandoc ptt.1.md -s -t man -o ptt.1
-          gzip ptt.1
+      - name: padoc
+        uses: docker://pandoc/core:2.9
+        with:
+          args: >-
+            ptt.1.md
+            -s
+            -t man
+            -o ptt.1
+
+      - name: Man zip
+        run: gzip ptt.1
 
       - name: commit files
         run: |
