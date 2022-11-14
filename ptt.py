@@ -9,6 +9,7 @@ import sys
 import subprocess
 import argparse
 import inspect
+import requests
 
 class C:
 	HEADER = '\033[95m'
@@ -36,6 +37,32 @@ class C:
 	@staticmethod
 	def prnt(*str):
 		if (not C.SILENT): print(*str)
+		
+def install():
+	print("Installing", os.path.realpath(__file__))
+	if (os.path.exists("/usr/bin/ptt")):
+		if (input("/usr/bin/ptt already exists. Do you want to update? [y/n] ") != "y"):
+			print("Aborting installation...")
+			return
+	print("Downloading latest version...")
+	req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.py")
+	if (req.status_code == 200):
+		print("Installing...")
+		content = req.text
+	else:
+		print("Download was not successfull")
+		print("Installing from local sources...")
+		with open(os.path.realpath(__file__), "r") as f:
+			content = f.read()
+			
+	try:
+		with open("/usr/bin/ptt", "w") as f:
+			f.write(content)
+		print("Installation was successfull")
+	except Exception as e:
+		print("ERROR:", e)
+		print("Installation was not successfull")
+		print("Make sure you run script as super user")
 
 def compile(script_path, compiler, compiler_args):
 	ret = subprocess.call([compiler, *compiler_args, script_path, "-o", script_path + ".out"])
@@ -125,10 +152,14 @@ def main():
 	"""
 	
 	parser = argparse.ArgumentParser(
-		prog="ptt.py",
+		prog="ptt",
 		description="Test tool for ProgTest from CVUT FIT",
 		epilog="Neco neco")
-	
+		
+	parser.add_argument("-i", "--install", action="store_true", default=False,
+			help="Install/update. Need super user.")
+			
+		
 	parser.add_argument("filename", 
 			help="Path to C/C++ script")
 	parser.add_argument("-d", "--data-path", action="store", default=False,
@@ -188,7 +219,11 @@ def main():
 				C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-V) specified but valgrind (-v) is not enabled{C.ENDC}")
 			if (args.val_data != ""):
 				C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-v) is not enabled{C.ENDC}")
-    
+
 if (__name__ == "__main__"):
+	args = args = sys.argv
+	if (len(args) > 1):
+		if (args[1] == "-i"):
+			exit(install())
 	exit(main())
 
