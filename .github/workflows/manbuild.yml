@@ -36,7 +36,7 @@ jobs:
             -o ptt.1
 
       - name: Man zip
-        run: gzip ptt.1
+        run: gzip -f ptt.1
 
       - name: commit files
         run: |
