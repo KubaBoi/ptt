@@ -1,0 +1,589 @@
+[2022-11-14T09:56:33.594590 23643] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.594590 23643] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) base_dir = 
+[2022-11-14T09:56:33.594590 23643] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.594590 23643] Config: (default) compiler = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.594590 23643] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.594590 23643] Config: (default) compression = true
+[2022-11-14T09:56:33.594590 23643] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.594590 23643] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) debug = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.594590 23643] Config: (default) disable = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) file_clone = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) hard_link = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.594590 23643] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.594590 23643] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.594590 23643] Config: (default) max_files = 0
+[2022-11-14T09:56:33.594590 23643] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.594590 23643] Config: (default) namespace = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) path = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) read_only = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) recache = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) reshare = false
+[2022-11-14T09:56:33.594590 23643] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.594590 23643] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.594590 23643] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.594590 23643] Config: (default) stats = true
+[2022-11-14T09:56:33.594590 23643] Config: (default) stats_log = 
+[2022-11-14T09:56:33.594590 23643] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.594590 23643] Config: (default) umask = 
+[2022-11-14T09:56:33.594667 23643] Command line: /usr/bin/ccache /usr/bin/gcc -o __constants.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src __constants.c
+[2022-11-14T09:56:33.594674 23643] Hostname: kuba
+[2022-11-14T09:56:33.594677 23643] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.594680 23643] Compiler type: gcc
+[2022-11-14T09:56:33.594764 23643] Source file: __constants.c
+[2022-11-14T09:56:33.594769 23643] Object file: __constants.o
+[2022-11-14T09:56:33.594786 23643] Trying direct lookup
+[2022-11-14T09:56:33.594825 23643] Retrieved 1a828ne9qcb9m19djh1h8qhirk3036sgu from primary storage (/home/jakub/.cache/Nuitka/ccache/1/a/828ne9qcb9m19djh1h8qhirk3036sguM)
+[2022-11-14T09:56:33.594835 23643] Looking for result key in /home/jakub/.cache/Nuitka/ccache/1/a/828ne9qcb9m19djh1h8qhirk3036sguM
+[2022-11-14T09:56:33.599450 23643] Got result key from manifest
+[2022-11-14T09:56:33.599486 23643] Retrieved 7259oc699fbpgt6qdq0f1ao9gc2totntm from primary storage (/home/jakub/.cache/Nuitka/ccache/7/2/59oc699fbpgt6qdq0f1ao9gc2totntmR)
+[2022-11-14T09:56:33.599572 23643] Reading embedded entry #0 .o (13968 bytes)
+[2022-11-14T09:56:33.599581 23643] Writing to __constants.o
+[2022-11-14T09:56:33.599661 23643] Succeeded getting cached result
+[2022-11-14T09:56:33.599675 23643] Result: direct_cache_hit
+[2022-11-14T09:56:33.599679 23643] Result: primary_storage_hit
+[2022-11-14T09:56:33.599683 23643] Result: primary_storage_hit
+[2022-11-14T09:56:33.599738 23643] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/5/b/stats.lock: No such file or directory
+[2022-11-14T09:56:33.599804 23643] Acquired lock /home/jakub/.cache/Nuitka/ccache/5/b/stats.lock
+[2022-11-14T09:56:33.599951 23643] Releasing lock /home/jakub/.cache/Nuitka/ccache/5/b/stats.lock
+[2022-11-14T09:56:33.599976 23643] Unlink /home/jakub/.cache/Nuitka/ccache/5/b/stats.lock
+[2022-11-14T09:56:33.603801 23646] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.603801 23646] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) base_dir = 
+[2022-11-14T09:56:33.603801 23646] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.603801 23646] Config: (default) compiler = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.603801 23646] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.603801 23646] Config: (default) compression = true
+[2022-11-14T09:56:33.603801 23646] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.603801 23646] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) debug = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.603801 23646] Config: (default) disable = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) file_clone = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) hard_link = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.603801 23646] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.603801 23646] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.603801 23646] Config: (default) max_files = 0
+[2022-11-14T09:56:33.603801 23646] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.603801 23646] Config: (default) namespace = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) path = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) read_only = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) recache = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) reshare = false
+[2022-11-14T09:56:33.603801 23646] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.603801 23646] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.603801 23646] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.603801 23646] Config: (default) stats = true
+[2022-11-14T09:56:33.603801 23646] Config: (default) stats_log = 
+[2022-11-14T09:56:33.603801 23646] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.603801 23646] Config: (default) umask = 
+[2022-11-14T09:56:33.603893 23646] Command line: /usr/bin/ccache /usr/bin/gcc -o __helpers.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src __helpers.c
+[2022-11-14T09:56:33.603910 23646] Hostname: kuba
+[2022-11-14T09:56:33.603913 23646] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.603916 23646] Compiler type: gcc
+[2022-11-14T09:56:33.604017 23646] Source file: __helpers.c
+[2022-11-14T09:56:33.604025 23646] Object file: __helpers.o
+[2022-11-14T09:56:33.604047 23646] Trying direct lookup
+[2022-11-14T09:56:33.604091 23646] Retrieved f515eahidllp4ki2pgrqqqr0rbr8hteik from primary storage (/home/jakub/.cache/Nuitka/ccache/f/5/15eahidllp4ki2pgrqqqr0rbr8hteikM)
+[2022-11-14T09:56:33.604105 23646] Looking for result key in /home/jakub/.cache/Nuitka/ccache/f/5/15eahidllp4ki2pgrqqqr0rbr8hteikM
+[2022-11-14T09:56:33.606253 23649] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.606253 23649] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) base_dir = 
+[2022-11-14T09:56:33.606253 23649] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.606253 23649] Config: (default) compiler = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.606253 23649] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.606253 23649] Config: (default) compression = true
+[2022-11-14T09:56:33.606253 23649] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.606253 23649] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) debug = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.606253 23649] Config: (default) disable = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) file_clone = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) hard_link = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.606253 23649] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.606253 23649] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.606253 23649] Config: (default) max_files = 0
+[2022-11-14T09:56:33.606253 23649] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.606253 23649] Config: (default) namespace = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) path = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) read_only = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) recache = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) reshare = false
+[2022-11-14T09:56:33.606253 23649] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.606253 23649] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.606253 23649] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.606253 23649] Config: (default) stats = true
+[2022-11-14T09:56:33.606253 23649] Config: (default) stats_log = 
+[2022-11-14T09:56:33.606253 23649] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.606253 23649] Config: (default) umask = 
+[2022-11-14T09:56:33.606322 23649] Command line: /usr/bin/ccache /usr/bin/gcc -o __loader.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src __loader.c
+[2022-11-14T09:56:33.606336 23649] Hostname: kuba
+[2022-11-14T09:56:33.606339 23649] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.606342 23649] Compiler type: gcc
+[2022-11-14T09:56:33.606420 23649] Source file: __loader.c
+[2022-11-14T09:56:33.606426 23649] Object file: __loader.o
+[2022-11-14T09:56:33.606447 23649] Trying direct lookup
+[2022-11-14T09:56:33.606493 23649] Retrieved 7172cb4q3oprhsiv7mu2f8jbcr31k730e from primary storage (/home/jakub/.cache/Nuitka/ccache/7/1/72cb4q3oprhsiv7mu2f8jbcr31k730eM)
+[2022-11-14T09:56:33.606506 23649] Looking for result key in /home/jakub/.cache/Nuitka/ccache/7/1/72cb4q3oprhsiv7mu2f8jbcr31k730eM
+[2022-11-14T09:56:33.609970 23649] Got result key from manifest
+[2022-11-14T09:56:33.610005 23649] Retrieved f97b5e4knikt1b617jdgb4dcvkdkuuv10 from primary storage (/home/jakub/.cache/Nuitka/ccache/f/9/7b5e4knikt1b617jdgb4dcvkdkuuv10R)
+[2022-11-14T09:56:33.610002 23646] Got result key from manifest
+[2022-11-14T09:56:33.610025 23646] Retrieved fed70rp8ekue2t5jqer1ag37feb5t94t6 from primary storage (/home/jakub/.cache/Nuitka/ccache/f/e/d70rp8ekue2t5jqer1ag37feb5t94t6R)
+[2022-11-14T09:56:33.610089 23649] Reading embedded entry #0 .o (8944 bytes)
+[2022-11-14T09:56:33.610089 23646] Reading embedded entry #0 .o (2656 bytes)
+[2022-11-14T09:56:33.610097 23649] Writing to __loader.o
+[2022-11-14T09:56:33.610099 23646] Writing to __helpers.o
+[2022-11-14T09:56:33.610162 23646] Succeeded getting cached result
+[2022-11-14T09:56:33.610170 23649] Succeeded getting cached result
+[2022-11-14T09:56:33.610178 23646] Result: direct_cache_hit
+[2022-11-14T09:56:33.610183 23646] Result: primary_storage_hit
+[2022-11-14T09:56:33.610183 23649] Result: direct_cache_hit
+[2022-11-14T09:56:33.610187 23646] Result: primary_storage_hit
+[2022-11-14T09:56:33.610189 23649] Result: primary_storage_hit
+[2022-11-14T09:56:33.610194 23649] Result: primary_storage_hit
+[2022-11-14T09:56:33.610235 23649] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/6/1/stats.lock: No such file or directory
+[2022-11-14T09:56:33.610235 23646] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/5/e/stats.lock: No such file or directory
+[2022-11-14T09:56:33.610311 23646] Acquired lock /home/jakub/.cache/Nuitka/ccache/5/e/stats.lock
+[2022-11-14T09:56:33.610338 23649] Acquired lock /home/jakub/.cache/Nuitka/ccache/6/1/stats.lock
+[2022-11-14T09:56:33.610461 23646] Releasing lock /home/jakub/.cache/Nuitka/ccache/5/e/stats.lock
+[2022-11-14T09:56:33.610461 23649] Releasing lock /home/jakub/.cache/Nuitka/ccache/6/1/stats.lock
+[2022-11-14T09:56:33.610485 23649] Unlink /home/jakub/.cache/Nuitka/ccache/6/1/stats.lock
+[2022-11-14T09:56:33.610485 23646] Unlink /home/jakub/.cache/Nuitka/ccache/5/e/stats.lock
+[2022-11-14T09:56:33.621037 23652] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.621037 23652] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) base_dir = 
+[2022-11-14T09:56:33.621037 23652] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.621037 23652] Config: (default) compiler = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.621037 23652] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.621037 23652] Config: (default) compression = true
+[2022-11-14T09:56:33.621037 23652] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.621037 23652] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) debug = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.621037 23652] Config: (default) disable = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) file_clone = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) hard_link = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.621037 23652] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.621037 23652] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.621037 23652] Config: (default) max_files = 0
+[2022-11-14T09:56:33.621037 23652] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.621037 23652] Config: (default) namespace = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) path = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) read_only = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) recache = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) reshare = false
+[2022-11-14T09:56:33.621037 23652] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.621037 23652] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.621037 23652] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.621037 23652] Config: (default) stats = true
+[2022-11-14T09:56:33.621037 23652] Config: (default) stats_log = 
+[2022-11-14T09:56:33.621037 23652] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.621037 23652] Config: (default) umask = 
+[2022-11-14T09:56:33.621105 23652] Command line: /usr/bin/ccache /usr/bin/gcc -o module.__main__.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src module.__main__.c
+[2022-11-14T09:56:33.621120 23652] Hostname: kuba
+[2022-11-14T09:56:33.621123 23652] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.621126 23652] Compiler type: gcc
+[2022-11-14T09:56:33.621203 23652] Source file: module.__main__.c
+[2022-11-14T09:56:33.621207 23652] Object file: module.__main__.o
+[2022-11-14T09:56:33.621222 23652] Trying direct lookup
+[2022-11-14T09:56:33.621794 23652] No 4819g127v6uj9svgn6go0ov0q062og2e6 in primary storage
+[2022-11-14T09:56:33.621844 23652] Running preprocessor
+[2022-11-14T09:56:33.621867 23652] Executing /usr/bin/gcc -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src -E -o /run/user/1000/ccache-tmp/tmp.cpp_stdout.9QZMpO.i module.__main__.c
+[2022-11-14T09:56:33.634086 23657] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.634086 23657] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) base_dir = 
+[2022-11-14T09:56:33.634086 23657] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.634086 23657] Config: (default) compiler = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.634086 23657] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.634086 23657] Config: (default) compression = true
+[2022-11-14T09:56:33.634086 23657] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.634086 23657] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) debug = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.634086 23657] Config: (default) disable = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) file_clone = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) hard_link = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.634086 23657] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.634086 23657] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.634086 23657] Config: (default) max_files = 0
+[2022-11-14T09:56:33.634086 23657] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.634086 23657] Config: (default) namespace = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) path = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) read_only = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) recache = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) reshare = false
+[2022-11-14T09:56:33.634086 23657] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.634086 23657] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.634086 23657] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.634086 23657] Config: (default) stats = true
+[2022-11-14T09:56:33.634086 23657] Config: (default) stats_log = 
+[2022-11-14T09:56:33.634086 23657] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.634086 23657] Config: (default) umask = 
+[2022-11-14T09:56:33.634153 23657] Command line: /usr/bin/ccache /usr/bin/gcc -o static_src/MainProgram.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src static_src/MainProgram.c
+[2022-11-14T09:56:33.634166 23657] Hostname: kuba
+[2022-11-14T09:56:33.634169 23657] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.634172 23657] Compiler type: gcc
+[2022-11-14T09:56:33.634254 23657] Source file: static_src/MainProgram.c
+[2022-11-14T09:56:33.634259 23657] Object file: static_src/MainProgram.o
+[2022-11-14T09:56:33.634274 23657] Trying direct lookup
+[2022-11-14T09:56:33.634359 23657] Retrieved f841js9hq1oj35v0hodkc8i8rprs3j5vc from primary storage (/home/jakub/.cache/Nuitka/ccache/f/8/41js9hq1oj35v0hodkc8i8rprs3j5vcM)
+[2022-11-14T09:56:33.634371 23657] Looking for result key in /home/jakub/.cache/Nuitka/ccache/f/8/41js9hq1oj35v0hodkc8i8rprs3j5vcM
+[2022-11-14T09:56:33.638105 23657] Got result key from manifest
+[2022-11-14T09:56:33.638131 23657] Retrieved b6eard8vj2tcrp94fh139n3vfed60lkko from primary storage (/home/jakub/.cache/Nuitka/ccache/b/6/eard8vj2tcrp94fh139n3vfed60lkkoR)
+[2022-11-14T09:56:33.638203 23657] Reading embedded entry #0 .o (27912 bytes)
+[2022-11-14T09:56:33.638208 23657] Writing to static_src/MainProgram.o
+[2022-11-14T09:56:33.638282 23657] Succeeded getting cached result
+[2022-11-14T09:56:33.638304 23657] Result: direct_cache_hit
+[2022-11-14T09:56:33.638308 23657] Result: primary_storage_hit
+[2022-11-14T09:56:33.638311 23657] Result: primary_storage_hit
+[2022-11-14T09:56:33.638358 23657] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/6/9/stats.lock: No such file or directory
+[2022-11-14T09:56:33.640493 23657] Acquired lock /home/jakub/.cache/Nuitka/ccache/6/9/stats.lock
+[2022-11-14T09:56:33.640627 23657] Releasing lock /home/jakub/.cache/Nuitka/ccache/6/9/stats.lock
+[2022-11-14T09:56:33.640644 23657] Unlink /home/jakub/.cache/Nuitka/ccache/6/9/stats.lock
+[2022-11-14T09:56:33.643489 23660] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.643489 23660] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) base_dir = 
+[2022-11-14T09:56:33.643489 23660] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.643489 23660] Config: (default) compiler = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.643489 23660] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.643489 23660] Config: (default) compression = true
+[2022-11-14T09:56:33.643489 23660] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.643489 23660] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) debug = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.643489 23660] Config: (default) disable = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) file_clone = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) hard_link = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.643489 23660] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.643489 23660] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.643489 23660] Config: (default) max_files = 0
+[2022-11-14T09:56:33.643489 23660] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.643489 23660] Config: (default) namespace = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) path = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) read_only = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) recache = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) reshare = false
+[2022-11-14T09:56:33.643489 23660] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.643489 23660] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.643489 23660] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.643489 23660] Config: (default) stats = true
+[2022-11-14T09:56:33.643489 23660] Config: (default) stats_log = 
+[2022-11-14T09:56:33.643489 23660] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.643489 23660] Config: (default) umask = 
+[2022-11-14T09:56:33.643598 23660] Command line: /usr/bin/ccache /usr/bin/gcc -o static_src/CompiledCellType.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src static_src/CompiledCellType.c
+[2022-11-14T09:56:33.643616 23660] Hostname: kuba
+[2022-11-14T09:56:33.643621 23660] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.643625 23660] Compiler type: gcc
+[2022-11-14T09:56:33.643763 23660] Source file: static_src/CompiledCellType.c
+[2022-11-14T09:56:33.643772 23660] Object file: static_src/CompiledCellType.o
+[2022-11-14T09:56:33.643793 23660] Trying direct lookup
+[2022-11-14T09:56:33.643854 23660] Retrieved 56d0bhg38tmd6tde5ni7kggv1emk8ddc0 from primary storage (/home/jakub/.cache/Nuitka/ccache/5/6/d0bhg38tmd6tde5ni7kggv1emk8ddc0M)
+[2022-11-14T09:56:33.643868 23660] Looking for result key in /home/jakub/.cache/Nuitka/ccache/5/6/d0bhg38tmd6tde5ni7kggv1emk8ddc0M
+[2022-11-14T09:56:33.649153 23660] Got result key from manifest
+[2022-11-14T09:56:33.649185 23660] Retrieved 2be5o1hvlksiofn1me2b47r88mmopoeau from primary storage (/home/jakub/.cache/Nuitka/ccache/2/b/e5o1hvlksiofn1me2b47r88mmopoeauR)
+[2022-11-14T09:56:33.649279 23660] Reading embedded entry #0 .o (35600 bytes)
+[2022-11-14T09:56:33.649299 23660] Writing to static_src/CompiledCellType.o
+[2022-11-14T09:56:33.649413 23660] Succeeded getting cached result
+[2022-11-14T09:56:33.649427 23660] Result: direct_cache_hit
+[2022-11-14T09:56:33.649432 23660] Result: primary_storage_hit
+[2022-11-14T09:56:33.649436 23660] Result: primary_storage_hit
+[2022-11-14T09:56:33.649482 23660] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/6/c/stats.lock: No such file or directory
+[2022-11-14T09:56:33.649554 23660] Acquired lock /home/jakub/.cache/Nuitka/ccache/6/c/stats.lock
+[2022-11-14T09:56:33.649710 23660] Releasing lock /home/jakub/.cache/Nuitka/ccache/6/c/stats.lock
+[2022-11-14T09:56:33.649733 23660] Unlink /home/jakub/.cache/Nuitka/ccache/6/c/stats.lock
+[2022-11-14T09:56:33.726004 23652] Got result key from preprocessor
+[2022-11-14T09:56:33.726062 23652] No 0e33aci8ipcs7kfq6fnnc862t20vr27kc in primary storage
+[2022-11-14T09:56:33.726072 23652] Running real compiler
+[2022-11-14T09:56:33.726129 23652] Executing /usr/bin/gcc -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src -c -fdiagnostics-color -o module.__main__.o module.__main__.c
+[2022-11-14T09:56:33.751129 23666] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.751129 23666] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) base_dir = 
+[2022-11-14T09:56:33.751129 23666] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.751129 23666] Config: (default) compiler = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.751129 23666] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.751129 23666] Config: (default) compression = true
+[2022-11-14T09:56:33.751129 23666] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.751129 23666] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) debug = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.751129 23666] Config: (default) disable = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) file_clone = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) hard_link = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.751129 23666] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.751129 23666] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.751129 23666] Config: (default) max_files = 0
+[2022-11-14T09:56:33.751129 23666] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.751129 23666] Config: (default) namespace = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) path = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) read_only = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) recache = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) reshare = false
+[2022-11-14T09:56:33.751129 23666] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.751129 23666] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.751129 23666] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.751129 23666] Config: (default) stats = true
+[2022-11-14T09:56:33.751129 23666] Config: (default) stats_log = 
+[2022-11-14T09:56:33.751129 23666] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.751129 23666] Config: (default) umask = 
+[2022-11-14T09:56:33.751199 23666] Command line: /usr/bin/ccache /usr/bin/gcc -o static_src/CompiledFunctionType.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src static_src/CompiledFunctionType.c
+[2022-11-14T09:56:33.751212 23666] Hostname: kuba
+[2022-11-14T09:56:33.751215 23666] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.751218 23666] Compiler type: gcc
+[2022-11-14T09:56:33.751300 23666] Source file: static_src/CompiledFunctionType.c
+[2022-11-14T09:56:33.751304 23666] Object file: static_src/CompiledFunctionType.o
+[2022-11-14T09:56:33.751319 23666] Trying direct lookup
+[2022-11-14T09:56:33.751459 23666] Retrieved eb9dqiiveunbic24skofqktleh6keuock from primary storage (/home/jakub/.cache/Nuitka/ccache/e/b/9dqiiveunbic24skofqktleh6keuockM)
+[2022-11-14T09:56:33.751472 23666] Looking for result key in /home/jakub/.cache/Nuitka/ccache/e/b/9dqiiveunbic24skofqktleh6keuockM
+[2022-11-14T09:56:33.759136 23666] Got result key from manifest
+[2022-11-14T09:56:33.759171 23666] Retrieved 85a7q6bn3u0keu0bsvopofmgl4m75tf9q from primary storage (/home/jakub/.cache/Nuitka/ccache/8/5/a7q6bn3u0keu0bsvopofmgl4m75tf9qR)
+[2022-11-14T09:56:33.759247 23666] Reading embedded entry #0 .o (2512336 bytes)
+[2022-11-14T09:56:33.759253 23666] Writing to static_src/CompiledFunctionType.o
+[2022-11-14T09:56:33.762156 23666] Succeeded getting cached result
+[2022-11-14T09:56:33.762182 23666] Result: direct_cache_hit
+[2022-11-14T09:56:33.762185 23666] Result: primary_storage_hit
+[2022-11-14T09:56:33.762188 23666] Result: primary_storage_hit
+[2022-11-14T09:56:33.762259 23666] Acquired lock /home/jakub/.cache/Nuitka/ccache/7/2/stats.lock
+[2022-11-14T09:56:33.762383 23666] Releasing lock /home/jakub/.cache/Nuitka/ccache/7/2/stats.lock
+[2022-11-14T09:56:33.762401 23666] Unlink /home/jakub/.cache/Nuitka/ccache/7/2/stats.lock
+[2022-11-14T09:56:33.776311 23669] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.776311 23669] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) base_dir = 
+[2022-11-14T09:56:33.776311 23669] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.776311 23669] Config: (default) compiler = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.776311 23669] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.776311 23669] Config: (default) compression = true
+[2022-11-14T09:56:33.776311 23669] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.776311 23669] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) debug = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.776311 23669] Config: (default) disable = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) file_clone = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) hard_link = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.776311 23669] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.776311 23669] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.776311 23669] Config: (default) max_files = 0
+[2022-11-14T09:56:33.776311 23669] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.776311 23669] Config: (default) namespace = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) path = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) read_only = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) recache = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) reshare = false
+[2022-11-14T09:56:33.776311 23669] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.776311 23669] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.776311 23669] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.776311 23669] Config: (default) stats = true
+[2022-11-14T09:56:33.776311 23669] Config: (default) stats_log = 
+[2022-11-14T09:56:33.776311 23669] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.776311 23669] Config: (default) umask = 
+[2022-11-14T09:56:33.776410 23669] Command line: /usr/bin/ccache /usr/bin/gcc -o static_src/CompiledGeneratorType.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src static_src/CompiledGeneratorType.c
+[2022-11-14T09:56:33.776431 23669] Hostname: kuba
+[2022-11-14T09:56:33.776436 23669] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.776440 23669] Compiler type: gcc
+[2022-11-14T09:56:33.776563 23669] Source file: static_src/CompiledGeneratorType.c
+[2022-11-14T09:56:33.776571 23669] Object file: static_src/CompiledGeneratorType.o
+[2022-11-14T09:56:33.776596 23669] Trying direct lookup
+[2022-11-14T09:56:33.776745 23669] Retrieved 55d1i9jbsms58qcgea6tisrtg3466v3v0 from primary storage (/home/jakub/.cache/Nuitka/ccache/5/5/d1i9jbsms58qcgea6tisrtg3466v3v0M)
+[2022-11-14T09:56:33.776763 23669] Looking for result key in /home/jakub/.cache/Nuitka/ccache/5/5/d1i9jbsms58qcgea6tisrtg3466v3v0M
+[2022-11-14T09:56:33.782313 23672] === CCACHE 4.6.3 STARTED =========================================
+[2022-11-14T09:56:33.782377 23669] Got result key from manifest
+[2022-11-14T09:56:33.782400 23669] Retrieved a6c560tjqtr52h79bv15o57g8mos72s5u from primary storage (/home/jakub/.cache/Nuitka/ccache/a/6/c560tjqtr52h79bv15o57g8mos72s5uR)
+[2022-11-14T09:56:33.782313 23672] Config: (default) absolute_paths_in_stderr = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) base_dir = 
+[2022-11-14T09:56:33.782313 23672] Config: (environment) cache_dir = /home/jakub/.cache/Nuitka/ccache
+[2022-11-14T09:56:33.782313 23672] Config: (default) compiler = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) compiler_check = mtime
+[2022-11-14T09:56:33.782313 23672] Config: (default) compiler_type = auto
+[2022-11-14T09:56:33.782313 23672] Config: (default) compression = true
+[2022-11-14T09:56:33.782313 23672] Config: (default) compression_level = 0
+[2022-11-14T09:56:33.782313 23672] Config: (default) cpp_extension = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) debug = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) debug_dir = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) depend_mode = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) direct_mode = true
+[2022-11-14T09:56:33.782313 23672] Config: (default) disable = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) extra_files_to_hash = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) file_clone = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) hard_link = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) hash_dir = true
+[2022-11-14T09:56:33.782313 23672] Config: (default) ignore_headers_in_manifest = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) ignore_options = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) inode_cache = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) keep_comments_cpp = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) limit_multiple = 0.8
+[2022-11-14T09:56:33.782313 23672] Config: (environment) log_file = /home/jakub/Desktop/programy/progtesty/ptt/ptt.build/ccache-23632.txt
+[2022-11-14T09:56:33.782313 23672] Config: (default) max_files = 0
+[2022-11-14T09:56:33.782313 23672] Config: (default) max_size = 5.0G
+[2022-11-14T09:56:33.782313 23672] Config: (default) namespace = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) path = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) pch_external_checksum = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) prefix_command = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) prefix_command_cpp = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) read_only = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) read_only_direct = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) recache = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) reshare = false
+[2022-11-14T09:56:33.782313 23672] Config: (default) run_second_cpp = true
+[2022-11-14T09:56:33.782313 23672] Config: (default) secondary_storage = 
+[2022-11-14T09:56:33.782313 23672] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2022-11-14T09:56:33.782313 23672] Config: (default) stats = true
+[2022-11-14T09:56:33.782313 23672] Config: (default) stats_log = 
+[2022-11-14T09:56:33.782313 23672] Config: (default) temporary_dir = /run/user/1000/ccache-tmp
+[2022-11-14T09:56:33.782313 23672] Config: (default) umask = 
+[2022-11-14T09:56:33.782418 23672] Command line: /usr/bin/ccache /usr/bin/gcc -o static_src/InspectPatcher.o -c -flto -fuse-linker-plugin -fno-fat-lto-objects -std=c11 -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O2 -D__NUITKA_NO_ASSERT__ -DPy_NO_ENABLE_SHARED -D_NUITKA_STATIC_LIBPYTHON -D_NUITKA_USE_UNEXPOSED_API -D_NUITKA_CONSTANTS_FROM_LINKER -D_NUITKA_FROZEN=0 -D_NUITKA_EXE -I/usr/include/python3.10 -I. -I/usr/lib/python3/dist-packages/nuitka/build/include -I/usr/lib/python3/dist-packages/nuitka/build/static_src static_src/InspectPatcher.c
+[2022-11-14T09:56:33.782429 23672] Hostname: kuba
+[2022-11-14T09:56:33.782434 23672] Working directory: /home/jakub/Desktop/programy/progtesty/ptt/ptt.build
+[2022-11-14T09:56:33.782439 23672] Compiler type: gcc
+[2022-11-14T09:56:33.782530 23669] Reading embedded entry #0 .o (311880 bytes)
+[2022-11-14T09:56:33.782537 23669] Writing to static_src/CompiledGeneratorType.o
+[2022-11-14T09:56:33.782573 23672] Source file: static_src/InspectPatcher.c
+[2022-11-14T09:56:33.782581 23672] Object file: static_src/InspectPatcher.o
+[2022-11-14T09:56:33.782605 23672] Trying direct lookup
+[2022-11-14T09:56:33.782672 23672] Retrieved 88730kcpbc5m1iuks6if19jq4l6rarpqi from primary storage (/home/jakub/.cache/Nuitka/ccache/8/8/730kcpbc5m1iuks6if19jq4l6rarpqiM)
+[2022-11-14T09:56:33.782687 23672] Looking for result key in /home/jakub/.cache/Nuitka/ccache/8/8/730kcpbc5m1iuks6if19jq4l6rarpqiM
+[2022-11-14T09:56:33.783215 23669] Succeeded getting cached result
+[2022-11-14T09:56:33.783231 23669] Result: direct_cache_hit
+[2022-11-14T09:56:33.783235 23669] Result: primary_storage_hit
+[2022-11-14T09:56:33.783239 23669] Result: primary_storage_hit
+[2022-11-14T09:56:33.783283 23669] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/7/5/stats.lock: No such file or directory
+[2022-11-14T09:56:33.783358 23669] Acquired lock /home/jakub/.cache/Nuitka/ccache/7/5/stats.lock
+[2022-11-14T09:56:33.783500 23669] Releasing lock /home/jakub/.cache/Nuitka/ccache/7/5/stats.lock
+[2022-11-14T09:56:33.783523 23669] Unlink /home/jakub/.cache/Nuitka/ccache/7/5/stats.lock
+[2022-11-14T09:56:33.788582 23672] Got result key from manifest
+[2022-11-14T09:56:33.788620 23672] Retrieved bd2djr3dajbam8rkfs8j9d2p4n1a58ad0 from primary storage (/home/jakub/.cache/Nuitka/ccache/b/d/2djr3dajbam8rkfs8j9d2p4n1a58ad0R)
+[2022-11-14T09:56:33.788761 23672] Reading embedded entry #0 .o (43264 bytes)
+[2022-11-14T09:56:33.788771 23672] Writing to static_src/InspectPatcher.o
+[2022-11-14T09:56:33.788908 23672] Succeeded getting cached result
+[2022-11-14T09:56:33.788924 23672] Result: direct_cache_hit
+[2022-11-14T09:56:33.788929 23672] Result: primary_storage_hit
+[2022-11-14T09:56:33.788934 23672] Result: primary_storage_hit
+[2022-11-14T09:56:33.788983 23672] lockfile_acquire: symlink /home/jakub/.cache/Nuitka/ccache/7/8/stats.lock: No such file or directory
+[2022-11-14T09:56:33.789062 23672] Acquired lock /home/jakub/.cache/Nuitka/ccache/7/8/stats.lock
+[2022-11-14T09:56:33.789216 23672] Releasing lock /home/jakub/.cache/Nuitka/ccache/7/8/stats.lock
+[2022-11-14T09:56:33.789240 23672] Unlink /home/jakub/.cache/Nuitka/ccache/7/8/stats.lock
+[2022-11-14T09:56:34.050638 23652] Using default compression level 1
+[2022-11-14T09:56:34.050735 23652] Storing embedded entry #0 .o (338088 bytes) from module.__main__.o
+[2022-11-14T09:56:34.052131 23652] Stored 0e33aci8ipcs7kfq6fnnc862t20vr27kc in primary storage (/home/jakub/.cache/Nuitka/ccache/0/e/33aci8ipcs7kfq6fnnc862t20vr27kcR)
+[2022-11-14T09:56:34.052216 23652] Adding result key to /home/jakub/.cache/Nuitka/ccache/4/8/19g127v6uj9svgn6go0ov0q062og2e6M
+[2022-11-14T09:56:34.052799 23652] Using default compression level 1
+[2022-11-14T09:56:34.053152 23652] Stored 4819g127v6uj9svgn6go0ov0q062og2e6 in primary storage (/home/jakub/.cache/Nuitka/ccache/4/8/19g127v6uj9svgn6go0ov0q062og2e6M)
+[2022-11-14T09:56:34.053194 23652] Result: cache_miss
+[2022-11-14T09:56:34.053199 23652] Result: direct_cache_miss
+[2022-11-14T09:56:34.053201 23652] Result: preprocessed_cache_miss
+[2022-11-14T09:56:34.053204 23652] Result: primary_storage_miss
+[2022-11-14T09:56:34.053206 23652] Result: primary_storage_miss
+[2022-11-14T09:56:34.053239 23652] Acquired lock /home/jakub/.cache/Nuitka/ccache/4/stats.lock
+[2022-11-14T09:56:34.053337 23652] Releasing lock /home/jakub/.cache/Nuitka/ccache/4/stats.lock
+[2022-11-14T09:56:34.053353 23652] Unlink /home/jakub/.cache/Nuitka/ccache/4/stats.lock
+[2022-11-14T09:56:34.053374 23652] Acquired lock /home/jakub/.cache/Nuitka/ccache/0/stats.lock
+[2022-11-14T09:56:34.053423 23652] Releasing lock /home/jakub/.cache/Nuitka/ccache/0/stats.lock
+[2022-11-14T09:56:34.053435 23652] Unlink /home/jakub/.cache/Nuitka/ccache/0/stats.lock
+[2022-11-14T09:56:34.053447 23652] Unlink /run/user/1000/ccache-tmp/tmp.stderr.mj6rGK
+[2022-11-14T09:56:34.053453 23652] Unlink /run/user/1000/ccache-tmp/tmp.stdout.t6jTgu
+[2022-11-14T09:56:34.053462 23652] Unlink /run/user/1000/ccache-tmp/tmp.stderr.8ra8x2
+[2022-11-14T09:56:34.053576 23652] Unlink /run/user/1000/ccache-tmp/tmp.cpp_stdout.9QZMpO.i

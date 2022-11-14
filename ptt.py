@@ -39,9 +39,8 @@ class C:
 		if (not C.SILENT): print(*str)
 		
 def install():
-	print("Installing", os.path.realpath(__file__))
 	if (os.path.exists("/usr/bin/ptt")):
-		if (input("/usr/bin/ptt already exists. Do you want to update? [y/n] ") != "y"):
+		if (input("/usr/bin/ptt already exists. Do you want to update ptt? [y/n] ") != "y"):
 			print("Aborting installation...")
 			return
 	print("Downloading latest version...")
