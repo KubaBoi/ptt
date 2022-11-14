@@ -57,20 +57,39 @@ def install():
 	try:
 		with open("/usr/bin/ptt", "w") as f:
 			f.write(content)
+		subprocess.call(["sudo", "chmod", "+x", "/usr/bin/ptt"])
 		print("Installation was successfull")
 	except Exception as e:
 		print("ERROR:", e)
 		print("Installation was not successfull")
-		print("Make sure you run script as super user")
+		print("Try to run 'sudo ptt -i' or 'sudo ptt.py -i'")
 		return
 	
 	print("Downloading latest manual...")
-	req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.1")
+	req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.1.gz")
 	if (req.status_code == 200):
 		print("Installing manual...")
+		with open("/usr/share/man/man1/ptt.1.gz", "wb") as f:
+			f.write(req.content)
+		subprocess.call(["sudo", "mandb"])
 	else:
 		print("Latest manual was not downloaded. 'man ptt' may not be functional")
-
+		
+def uninstall():
+	if (input("Do you really want to uninstall ptt? [y/n] ") != "y"):
+		return
+	try:
+		if (os.path.exists("/usr/bin/ptt")):
+			os.remove("/usr/bin/ptt")
+		if (os.path.exists("/usr/share/man/man1/ptt.1.gz")):
+			os.remove("/usr/share/man/man1/ptt.1.gz")
+			subprocess.call(["sudo", "mandb"])
+		print("Uninstallation was successfull. Sorry to hear that :(")
+	except Exception as e:
+		print("ERROR:", e)
+		print("Uninstallation was not successfull")
+		print("Try to run 'sudo ptt -u' or 'sudo ptt.py -u'")
+		
 def compile(script_path, compiler, compiler_args):
 	ret = subprocess.call([compiler, *compiler_args, script_path, "-o", script_path + ".out"])
 	if (ret != 0):
@@ -163,12 +182,14 @@ def main():
 		description="Test tool for ProgTest from CVUT FIT",
 		epilog="Neco neco")
 		
-	parser.add_argument("-i", "--install", action="store_true", default=False,
-			help="Install/update. Need super user.")
-			
-		
 	parser.add_argument("filename", 
 			help="Path to C/C++ script")
+			
+	parser.add_argument("-i", "--install", action="store_true", default=False,
+			help="Install/update. Need super user.")
+	parser.add_argument("-u", "--uninstall", action="store_true", default=False,
+			help="Uninstall. Need super user.")
+			
 	parser.add_argument("-d", "--data-path", action="store", default=False,
 		        help="Path to directory with test data. If not included, then script is runned only once and waits for users input")
 	parser.add_argument("-v", "--valgrind", action="store_true",
@@ -232,5 +253,7 @@ if (__name__ == "__main__"):
 	if (len(args) > 1):
 		if (args[1] == "-i"):
 			exit(install())
+		elif (args[1] == "-u"):
+			exit(uninstall())
 	exit(main())
 
