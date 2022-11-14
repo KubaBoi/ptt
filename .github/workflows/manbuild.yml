@@ -46,7 +46,6 @@ jobs:
           git commit -m "${{ steps.promote.outputs.commitMessage }}" -a
           
       - name: push changes
-        if: github.event.commits[0].message == 'test build' || github.event.commits[0].message == 'build'
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
