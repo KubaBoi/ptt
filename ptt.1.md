@@ -23,6 +23,9 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-h, --help**
 : Show help message.
 
+**-v, --version**
+: Show version.
+
 **-i, --install**
 : Install/update. Need super user.
 
@@ -32,10 +35,10 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-d, --data-path DATA_PATH** 
 : Path to directory with test data. If not included, then script is runned only once and waits for users input.
 
-**-v, --valgrind**
+**-g, --valgrind**
 : Script is runned under Valgrind.
 
-**-V, --val-args**
+**-G, --val-args**
 : Arguments for Valgrind as string and needs to start with \ .
 
 **-D, --val-data**
@@ -60,10 +63,10 @@ ptt - Test tool for ProgTest from CVUT FIT
 **ptt -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' and compares output with template from dataset.
 
-**ptt -v cvika/ukol.c**
+**ptt -g cvika/ukol.c**
 : Runs script once and waits for user's input under Valgrind.
 
-**ptt -v -V '\\--leak-check' -d 'cvika/sample/CZE' cvika/ukol.c**
+**ptt -g -G '\\--leak-check' -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' under Valgrind with Valgrind argument '--leak-check' and compares output with template from dataset.
 
 # AUTHORS

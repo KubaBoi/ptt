@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 Test tool for ProgTests from CVUT FIT
+
+version: 0.5.0
 """
 __docformat__ = "reStructedText"
 
@@ -10,6 +12,9 @@ import subprocess
 import argparse
 import inspect
 import requests
+
+class V:
+	VERSION = "0.5.0"
 
 class C:
 	HEADER = '\033[95m'
@@ -89,6 +94,9 @@ def uninstall():
 		print("ERROR:", e)
 		print("Uninstallation was not successfull")
 		print("Try to run 'sudo ptt -u' or 'sudo ptt.py -u'")
+		
+def version():
+	print(f"ProgTestTest v({V.VERSION})")
 		
 def compile(script_path, compiler, compiler_args):
 	ret = subprocess.call([compiler, *compiler_args, script_path, "-o", script_path + ".out"])
@@ -189,12 +197,14 @@ def main():
 			help="Install/update. Need super user.")
 	parser.add_argument("-u", "--uninstall", action="store_true", default=False,
 			help="Uninstall. Need super user.")
+	parser.add_argument("-v", "--version", action="store_true", default=False,
+			help="Show version")
 			
 	parser.add_argument("-d", "--data-path", action="store", default=False,
 		        help="Path to directory with test data. If not included, then script is runned only once and waits for users input")
-	parser.add_argument("-v", "--valgrind", action="store_true",
+	parser.add_argument("-g", "--valgrind", action="store_true",
 			help="Script is runned under Valgrind")
-	parser.add_argument("-V", "--val-args", action="store", default="",
+	parser.add_argument("-G", "--val-args", action="store", default="",
 			help="Arguments for Valgrind as string and needs to start with \\")
 	parser.add_argument("-D", "--val-data", action="store", default="",
 			help="Data for Valgrind as string")
@@ -255,5 +265,7 @@ if (__name__ == "__main__"):
 			exit(install())
 		elif (args[1] == "-u"):
 			exit(uninstall())
+		elif (args[1] == "-v"):
+			exit(version())
 	exit(main())
 
