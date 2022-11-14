@@ -265,11 +265,11 @@ def main():
 if (__name__ == "__main__"):
 	args = args = sys.argv
 	if (len(args) > 1):
-		if (args[1] == "-i"):
+		if (args[1] == "-i" or args[1] == "--install"):
 			exit(install())
-		elif (args[1] == "-u"):
+		elif (args[1] == "-u" or args[1] == "--uninstall"):
 			exit(uninstall())
-		elif (args[1] == "-v"):
+		elif (args[1] == "-v" or args[1] == "--version"):
 			exit(version())
 	exit(main())
 
