@@ -79,6 +79,10 @@ def install():
 		subprocess.call(["sudo", "mandb"])
 	else:
 		print("Latest manual was not downloaded. 'man ptt' may not be functional")
+
+	process = subprocess.Popen(['ptt', '-v'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out, err = process.communicate()
+	print(f"\nSuccessfully installed {out.decode('utf-8')}")
 		
 def uninstall():
 	if (input("Do you really want to uninstall ptt? [y/n] ") != "y"):
