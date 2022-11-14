@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.0
+version: 0.5.1
 """
 __docformat__ = "reStructedText"
 
@@ -14,7 +14,7 @@ import inspect
 import requests
 
 class V:
-	VERSION = "0.5.0"
+	VERSION = "0.5.1"
 
 class C:
 	HEADER = '\033[95m'
