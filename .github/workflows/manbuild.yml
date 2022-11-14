@@ -1,0 +1,47 @@
+name: Man Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+        with:
+            ref: master
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' # install the python version needed
+
+      - name: Promote version
+        id: promote
+        run: |
+          output=$(python3 .github/promote.py)
+          echo "::set-output name=commitMessage::$output"
+
+      - name: Man build
+        run: |
+          pandoc ptt.1.md -s -t man -o ptt.1
+          gzip ptt.1
+
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "${{ steps.promote.outputs.commitMessage }}" -a
+          
+      - name: push changes
+        if: github.event.commits[0].message == 'test build' || github.event.commits[0].message == 'build'
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main  
+        
