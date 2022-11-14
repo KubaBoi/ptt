@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-# NAME
 Test tool for ProgTests from CVUT FIT
 """
 __docformat__ = "reStructedText"
