@@ -121,68 +121,83 @@ def readFiles(files_path):
                         os.listdir(files_path) ) )
 	
 def runTests(script_path, files_path, cmd):
-	files = readFiles(files_path)
-
-	counter = 1
+	counter = 0
 	fails = 0
-	for i, file in enumerate(files):
-		if (i % 3 != 0): continue
-		
+	
+	if (os.path.isdir(files_path)):
+		files = readFiles(files_path)
+
+		for i, file in enumerate(files):
+			if (i % 3 != 0): continue
+			
+			C.prnt("");
+			C.prnt(f"{C.HEADER}{5*'='}Test {counter}. - {file}{5*'='}{C.ENDC}")
+			counter += 1
+			
+			fails += runOneFile(script_path, os.path.join(files_path, file), cmd)
+	else:
 		C.prnt("");
-		C.prnt(f"{C.HEADER}{5*'='}Test {counter}. - {file}{5*'='}{C.ENDC}")
+		C.prnt(f"{C.HEADER}{5*'='}Test {counter}. - {files_path}{5*'='}{C.ENDC}")
 		counter += 1
-		ret = run(script_path, os.path.join(files_path, file), "tmp.txt", cmd.copy())
-		if (ret != 0):
-			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
 		
-		with open("tmp.txt", "r") as f:
-			out = f.read()
+		fails = runOneFile(script_path, files_path, cmd)
 		
-		with open(os.path.join(files_path, files[i+1]), "r") as fo:
-			temp = fo.read()
-		
-		if (temp != out):
-			fails += 1
-		
-			with open(os.path.join(files_path, file), "r") as f:
-				in_data = f.read()
-			
-			C.prnt("")
-			C.prnt("Input:")
-			
-			C.prnt(in_data)
-			
-			out_split = out.split("\n")
-			temp_split = temp.split("\n")
-			
-			C.prnt("")
-			C.prnt("Output:")
-			
-			for line1, line2 in zip(out_split, temp_split):
-				h = f"{C.OKGREEN}>> {C.ENDC}"
-				if (line1 != line2): h = f"{C.FAIL}>> {C.ENDC}"
-				C.prnt(f"{h}{line1}{(30 - len(line1)) * ' '} {C.BOLD}|{C.ENDC} {line2}")
-				
-			if (len(out_split) > len(temp_split)):
-				for i in range(len(temp_split), len(out_split)):
-					line = out_split[i]
-					C.prnt(f"{C.FAIL}>> {C.ENDC}" + line)
-					
-			elif (len(temp_split) > len(out_split)):
-				for i in range(len(out_split), len(temp_split)):
-					line = temp_split[i]
-					C.prnt(f"{C.FAIL}>> {C.ENDC}" + ((30 - len(line)) * " ") + f" {C.BOLD}|{C.ENDC} " + line)
-			
-			C.prnt("")
-			C.prnt(5*"=")
-			C.prnt(f"{C.FAIL}Output not matching{C.ENDC}")
-		else:
-			C.prnt(f"{C.OKGREEN}OK{C.ENDC}")
-			
-		os.remove("tmp.txt")
 	C.prnt(20*"=")
 	C.prnt(f"Test count: {counter}")
 	C.prnt(f"Failed tests: {fails}")
+	
+def runOneFile(script_path, file, cmd):
+	ret = run(script_path, file, "tmp.txt", cmd.copy())
+	if (ret != 0):
+		C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
+	
+	with open("tmp.txt", "r") as f:
+		out = f.read()
+	
+	with open(file.replace("in", "out"), "r") as fo:
+		temp = fo.read()
+	
+	if (temp != out):	
+		with open(file, "r") as f:
+			in_data = f.read()
+		
+		C.prnt("")
+		C.prnt("Input:")
+		
+		C.prnt(in_data)
+		
+		out_split = out.split("\n")
+		temp_split = temp.split("\n")
+		
+		C.prnt("")
+		C.prnt("Output:")
+		
+		for line1, line2 in zip(out_split, temp_split):
+			h = f"{C.OKGREEN}>> {C.ENDC}"
+			if (line1 != line2): h = f"{C.FAIL}>> {C.ENDC}"
+			C.prnt(f"{h}{line1}{(30 - len(line1)) * ' '} {C.BOLD}|{C.ENDC} {line2}")
+			
+		if (len(out_split) > len(temp_split)):
+			for i in range(len(temp_split), len(out_split)):
+				line = out_split[i]
+				C.prnt(f"{C.FAIL}>> {C.ENDC}" + line)
+				
+		elif (len(temp_split) > len(out_split)):
+			for i in range(len(out_split), len(temp_split)):
+				line = temp_split[i]
+				C.prnt(f"{C.FAIL}>> {C.ENDC}" + ((30 - len(line)) * " ") + f" {C.BOLD}|{C.ENDC} " + line)
+		
+		C.prnt("")
+		C.prnt(5*"=")
+		C.prnt(f"{C.FAIL}Output not matching{C.ENDC}")
+		return 1
+	else:
+		C.prnt(f"{C.OKGREEN}OK{C.ENDC}")
+		return 0
+		
+	os.remove("tmp.txt")
+		
+# METHODS
 
 def main():
 	"""
