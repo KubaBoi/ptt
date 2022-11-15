@@ -33,7 +33,7 @@ ptt - Test tool for ProgTest from CVUT FIT
 : Uninstall. Need super user.
 
 **-d, --data-path DATA_PATH** 
-: Path to directory with test data. If not included, then script is runned only once and waits for users input.
+: Path to directory with test data. If path is file, then script is runned only once with data from path file. If not included, then script is runned only once and waits for users input.
 
 **-g, --valgrind**
 : Script is runned under Valgrind.

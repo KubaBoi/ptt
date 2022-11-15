@@ -220,7 +220,7 @@ def main():
 			help="Show version")
 			
 	parser.add_argument("-d", "--data-path", action="store", default=False,
-		        help="Path to directory with test data. If not included, then script is runned only once and waits for users input")
+		        help="Path to directory with test data. If path is file, then script is runned only once with data from path file. If not included, then script is runned only once and waits for users input.")
 	parser.add_argument("-g", "--valgrind", action="store_true",
 			help="Script is runned under Valgrind")
 	parser.add_argument("-G", "--val-args", action="store", default="",
