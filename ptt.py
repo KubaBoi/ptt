@@ -12,6 +12,7 @@ import subprocess
 import argparse
 import inspect
 import requests
+import time
 
 class V:
 	VERSION = "0.5.5"
@@ -28,6 +29,7 @@ class C:
 	UNDERLINE = '\033[4m'
 	
 	SILENT = False
+	MILLI_SECONDS = False
 	
 	@staticmethod
 	def noColors():
@@ -38,6 +40,10 @@ class C:
 	@staticmethod
 	def silent():
 		C.SILENT = True
+		
+	@staticmethod
+	def milliseconds():
+		C.MILLI_SECONDS = True
 			
 	@staticmethod
 	def prnt(*str):
@@ -56,11 +62,11 @@ def install():
 	else:
 		print("Download was not successfull")
 		print("Installing from local sources...")
-		with open(os.path.realpath(__file__), "r") as f:
+		with open(os.path.realpath(__file__), "r", encoding="utf-8") as f:
 			content = f.read()
 			
 	try:
-		with open("/usr/bin/ptt", "w") as f:
+		with open("/usr/bin/ptt", "w", encoding="utf-8") as f:
 			f.write(content)
 		subprocess.call(["sudo", "chmod", "+x", "/usr/bin/ptt"])
 		print("Installation was successfull")
@@ -102,6 +108,10 @@ def uninstall():
 def version():
 	print(f"ProgTestTest v({V.VERSION})")
 		
+def convertTime(tm):
+	if (C.MILLI_SECONDS): return f"{1000 * tm} ms"
+	return f"{tm} s"
+		
 def compile(script_path, compiler, compiler_args):
 	ret = subprocess.call([compiler, *compiler_args, script_path, "-o", script_path + ".out"])
 	if (ret != 0):
@@ -113,8 +123,9 @@ def compile(script_path, compiler, compiler_args):
 def run(script_path, input_file, output_file, cmd):
 	index = cmd.index(f"./{script_path}.out")
 	cmd[index] += f" < \"{input_file}\" > \"{output_file}\""
+	tm = time.time()
 	ret = subprocess.call(" ".join(cmd), shell=True)
-	return ret
+	return ret, time.time() - tm
 
 def readFiles(files_path):
 	return sorted( filter( lambda x: os.path.isfile(os.path.join(files_path, x)),
@@ -147,18 +158,18 @@ def runTests(script_path, files_path, cmd):
 	C.prnt(f"Failed tests: {fails}")
 	
 def runOneFile(script_path, file, cmd):
-	ret = run(script_path, file, "tmp.txt", cmd.copy())
+	ret, tm = run(script_path, file, "tmp.txt", cmd.copy())
 	if (ret != 0):
 		C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
 	
-	with open("tmp.txt", "r") as f:
+	with open("tmp.txt", "r", encoding="utf-8") as f:
 		out = f.read()
 	
-	with open(file.replace("in", "out"), "r") as fo:
+	with open(file.replace("in", "out"), "r", encoding="utf-8") as fo:
 		temp = fo.read()
 	
 	if (temp != out):	
-		with open(file, "r") as f:
+		with open(file, "r", encoding="utf-8") as f:
 			in_data = f.read()
 		
 		C.prnt("")
@@ -190,9 +201,11 @@ def runOneFile(script_path, file, cmd):
 		C.prnt("")
 		C.prnt(5*"=")
 		C.prnt(f"{C.FAIL}Output not matching{C.ENDC}")
+		C.prnt(f"Time: {convertTime(tm)}")
 		return 1
 	else:
 		C.prnt(f"{C.OKGREEN}OK{C.ENDC}")
+		C.prnt(f"Time: {convertTime(tm)}")
 		return 0
 		
 	os.remove("tmp.txt")
@@ -231,6 +244,8 @@ def main():
 			help="Compiler (default is g++)")
 	parser.add_argument("-C", "--compiler-args", action="store", default="\\-Wall -pedantic",
 			help="Arguments for compiler (default is '-Wall -pedantic')")
+	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
+			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
 			help="ptt will be silent (compiler, valgrind and tested script won't be)")
 	parser.add_argument("-n", "--no-colors", action="store_true", default=False,
@@ -243,6 +258,8 @@ def main():
 		C.noColors()
 	if (args.silent):
 		C.silent()
+	if (args.milli_seconds):
+		C.milliseconds()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()

@@ -50,6 +50,9 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-C, --compiler-args**
 : Arguments for compiler (default is '-Wall -pedantic').
 
+**-m, --milli-seconds**
+: Time is counted in milliseconds.
+
 **-s, --silent**
 : ptt will be silend (compiler, valgrind and tested script won't be).
 
