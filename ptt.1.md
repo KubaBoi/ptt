@@ -50,6 +50,9 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-C, --compiler-args**
 : Arguments for compiler (default is '-Wall -pedantic').
 
+**-k, --keep-links**
+: Keeps link (.o) files from compilation.
+
 **-m, --milli-seconds**
 : Time is counted in milliseconds.
 
