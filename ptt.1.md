@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.8
+footer: ptt 0.5.9
 date: November 18, 2022
 ---
 
@@ -82,4 +82,4 @@ Written by Jakub Anderle
 Submit bug report online at: <https://github.com/KubaBoi/ptt/issues>
 
 # SEE ALSO
-Full documentation ad sources at: <https://github.com/KubaBoi/ptt>
+Sources at: <https://github.com/KubaBoi/ptt>
