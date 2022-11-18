@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.6
+version: 0.5.7
 """
 __docformat__ = "reStructedText"
 
@@ -40,7 +40,7 @@ $(NAME): $(OBJFILES)
 	"""
 
 class V:
-	VERSION = "0.5.6"
+	VERSION = "0.5.7"
 
 class C:
 	HEADER = '\033[95m'
