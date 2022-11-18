@@ -2,18 +2,18 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.0
-date: November 14, 2022
+footer: ptt 0.5.8
+date: November 18, 2022
 ---
 
 # ProgTestTest
 ptt - Test tool for ProgTest from CVUT FIT
 
 # SYNOPSIS
-**ptt** [-h] [-i] [-u] [-d DATA_PATH] [-v] [-V VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-s] [-n] filename
+**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-g] [-G VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-m] [-s] [-n] filename
 
 # DESCRIPTION
-**ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
+**ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
 
 # POSITIONAL ARGUMENTS
 **filename**
@@ -57,7 +57,7 @@ ptt - Test tool for ProgTest from CVUT FIT
 : Time is counted in milliseconds.
 
 **-s, --silent**
-: ptt will be silend (compiler, valgrind and tested script won't be).
+: ptt will be silent (compiler, valgrind and tested script won't be).
 
 **-n, --no-colors**
 : Output of ptt is without any colors.
