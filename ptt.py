@@ -342,7 +342,7 @@ def main():
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
-		cmd = ["valgrind", f"{val_args}", f"./{script_path}.out", f"{args.val_data}"]
+		cmd = ["valgrind", f"{val_args}", f"./{script_path.replace('.c', '')}", f"{args.val_data}"]
 	else:
 		cmd = [f"./{script_path.replace('.c', '')}"]
 	

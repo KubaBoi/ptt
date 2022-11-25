@@ -2,8 +2,8 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.9
-date: November 18, 2022
+footer: ptt 0.5.10
+date: November 25, 2022
 ---
 
 # ProgTestTest
@@ -72,7 +72,7 @@ ptt - Test tool for ProgTest from CVUT FIT
 **ptt -g cvika/ukol.c**
 : Runs script once and waits for user's input under Valgrind.
 
-**ptt -g -G '\\--leak-check' -d 'cvika/sample/CZE' cvika/ukol.c**
+**ptt -g -G '\\--leak-check=full' -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' under Valgrind with Valgrind argument '--leak-check' and compares output with template from dataset.
 
 # AUTHORS
