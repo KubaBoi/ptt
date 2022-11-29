@@ -69,5 +69,5 @@ classes = findClasses(main_dir)
 main = getMainNoImports(main_file)
 imps = prepareImports(imports, classes)
 
-with open(os.path.join(package_dir, "ptt", "usr", "bin", "ptt"), "w") as f:
+with open(os.path.join(package_dir, "usr", "bin", "ptt"), "w") as f:
     f.write(main.replace("#IMPORT", imps))
