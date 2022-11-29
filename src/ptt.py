@@ -14,7 +14,6 @@ import argparse
 from manageClasses import *
 from compilator import Compilator
 from runner import Runner
-from manager import Manager
 #ENDIMPORT
 
 def main():
