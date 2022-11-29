@@ -20,11 +20,24 @@ jobs:
         with:
           python-version: '3.9' # install the python version needed
 
+      - name: Install nuitka
+        run: |
+          sudo apt update
+          sudo apt install nuitka
+
       - name: Promote version
         id: promote
         run: |
           output=$(python3 .github/promote.py)
           echo "::set-output name=commitMessage::$output"
+
+      - name: Make one file
+        run: |
+          python3 .github/builder.py
+
+      - name: Build binary
+        run: |
+          nuitka3 ptt.py -o ptt
 
       - name: padoc
         uses: docker://pandoc/core:2.9

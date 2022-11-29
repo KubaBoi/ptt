@@ -1,7 +1,7 @@
 
 import os
 
-path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), "..", "ptt.py"))
+path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), "..", "src", "ptt.py"))
 
 with open(path, "r") as f:
 	lines = f.readlines()

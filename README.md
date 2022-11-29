@@ -6,7 +6,7 @@ Script for testing ProgTest from CVUT FIT
 
 Not necessary
 
-`sudo apt install nutika3`
+`sudo apt install nuitka`
 
 `nuitka3 ptt.py`
 
