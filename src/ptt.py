@@ -107,11 +107,7 @@ def main():
 if (__name__ == "__main__"):
 	args = args = sys.argv
 	if (len(args) > 1):
-		if (args[1] == "-i" or args[1] == "--install"):
-			exit(Manager.install())
-		elif (args[1] == "-u" or args[1] == "--uninstall"):
-			exit(Manager.uninstall())
-		elif (args[1] == "-v" or args[1] == "--version"):
-			exit(Manager.version())
+		if (args[1] == "-v" or args[1] == "--version"):
+			exit(f"ProgTestTest v({V.VERSION})")
 	exit(main())
 

@@ -3,6 +3,7 @@ import os
 
 root_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), ".."))
 path = os.path.join(root_path, "src", "ptt.py")
+m_path = os.path.join(root_path, "src", "ptt.py")
 control_path = os.path.join(root_path, "ptt", "DEBIAN", "control")
 
 with open(path, "r") as f:
@@ -16,11 +17,19 @@ for line in lines:
 		v = int(vers[2]) + 1
 		vers[2] = str(v)
 		print("Promoting version:", ".".join(vers))
-		
+
+# main		
 with open(path, "r") as f:
 	content = f.read()
 with open(path, "w") as f:
 	f.write(content.replace(old_version, ".".join(vers)))
+
+# manageClasse
+with open(m_path, "r") as f:
+	content = f.read()
+with open(m_path, "w") as f:
+	f.write(content.replace(old_version, ".".join(vers)))
+
 
 # CONTROL
 
