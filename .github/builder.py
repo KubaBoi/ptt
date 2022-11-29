@@ -61,6 +61,7 @@ def prepareImports(imports, classes):
     
 
 main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src"))
+package_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ptt"))
 main_file = os.path.join(main_dir, "ptt.py")
 
 imports = findImports(main_dir)
@@ -68,5 +69,5 @@ classes = findClasses(main_dir)
 main = getMainNoImports(main_file)
 imps = prepareImports(imports, classes)
 
-with open("ptt.py", "w") as f:
+with open(os.path.join(package_dir, "ptt", "usr", "bin", "ptt"), "w") as f:
     f.write(main.replace("#IMPORT", imps))

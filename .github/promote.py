@@ -1,7 +1,9 @@
 
 import os
 
-path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), "..", "src", "ptt.py"))
+root_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), ".."))
+path = os.path.join(root_path, "src", "ptt.py")
+control_path = os.path.join(root_path, "ptt", "DEBIAN", "control")
 
 with open(path, "r") as f:
 	lines = f.readlines()
@@ -19,4 +21,18 @@ with open(path, "r") as f:
 	content = f.read()
 with open(path, "w") as f:
 	f.write(content.replace(old_version, ".".join(vers)))
+
+# CONTROL
+
+new_control = ""
+with open(control_path, "r") as f:
+	data_lines = f.readlines()
+
+for line in data_lines:
+	if (line.startswith("Version:")):
+		new_control += "Version: " + ".".join(vers) + "\n"
+	else:
+		new_control += line
 	
+with open(control_path, "w") as f:
+	f.write(new_control)

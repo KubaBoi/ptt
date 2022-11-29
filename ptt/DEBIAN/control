@@ -5,6 +5,5 @@ Priority: optional
 Architecture: all
 Essential: no
 Installed-Size: 1024
-Maintainer: linuxconfig.org
-Description: Print linuxconfig.org on the screen
-Source: /usr/bin/ptt
+Maintainer: https://github.com/KubaBoi
+Description: Test tool for ProgTests from CVUT FIT
