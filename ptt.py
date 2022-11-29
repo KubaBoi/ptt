@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.11
+version: 0.5.12
 """
 __docformat__ = "reStructedText"
 
@@ -234,7 +234,7 @@ class Manager:
 				print("Aborting installation...")
 				return
 		print("Downloading latest version...")
-		req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.py")
+		req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt")
 		if (req.status_code == 200):
 			print("Installing...")
 			content = req.text
