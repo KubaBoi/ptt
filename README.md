@@ -36,3 +36,8 @@ Make sure you are connected to internet. Otherwise latest version will not be do
 
 `gzip ptt.1`
 
+## Package
+
+`dpkg-deb --build ptt.pack`
+
+`mv ptt.pack.deb ptt-version_amd64.deb`

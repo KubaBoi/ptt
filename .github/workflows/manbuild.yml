@@ -36,7 +36,7 @@ jobs:
 
       - name: Build binary
         run: |
-          python3 -m nuitka ptt.py -o ptt
+          python3 -m nuitka ptt.py -o ptt/usr/bin/ptt
 
       - name: padoc
         uses: docker://pandoc/core:2.9
@@ -48,7 +48,13 @@ jobs:
             -o ptt.1
 
       - name: Man zip
-        run: gzip -f ptt.1
+        run: |
+          gzip -f ptt.1
+          mv ptt.1.gz ptt/usr/share/man/man1/ptt.1.gz
+
+      - name: Build package
+        run: |
+          dpkg-deb --build ptt
 
       - name: commit files
         run: |
