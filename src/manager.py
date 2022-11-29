@@ -14,7 +14,7 @@ class Manager:
 				print("Aborting installation...")
 				return
 		print("Downloading latest version...")
-		req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt.py")
+		req = requests.get("https://raw.githubusercontent.com/KubaBoi/ptt/master/ptt")
 		if (req.status_code == 200):
 			print("Installing...")
 			content = req.text
