@@ -22,8 +22,8 @@ jobs:
 
       - name: Install nuitka
         run: |
-          sudo apt update
-          sudo apt install nuitka3
+          sudo apt-get update
+          sudo apt-get install nuitka3
 
       - name: Promote version
         id: promote
