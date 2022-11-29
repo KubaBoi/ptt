@@ -22,8 +22,7 @@ jobs:
 
       - name: Install nuitka
         run: |
-          sudo apt-get update
-          sudo apt-get install nuitka
+          pip install nuitka
 
       - name: Promote version
         id: promote
@@ -37,7 +36,7 @@ jobs:
 
       - name: Build binary
         run: |
-          nuitka3 ptt.py -o ptt
+          python3 -m nuitka ptt.py -o ptt
 
       - name: padoc
         uses: docker://pandoc/core:2.9
