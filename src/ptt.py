@@ -30,10 +30,6 @@ def main():
 	parser.add_argument("filename", 
 			help="Path to C/C++ script")
 			
-	parser.add_argument("-i", "--install", action="store_true", default=False,
-			help="Install/update. Need super user.")
-	parser.add_argument("-u", "--uninstall", action="store_true", default=False,
-			help="Uninstall. Need super user.")
 	parser.add_argument("-v", "--version", action="store_true", default=False,
 			help="Show version")
 			

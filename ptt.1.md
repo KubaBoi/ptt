@@ -2,8 +2,8 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.15
-date: November 25, 2022
+footer: ptt 0.5.29
+date: December 1, 2022
 ---
 
 # ProgTestTest
@@ -26,12 +26,6 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-v, --version**
 : Show version.
 
-**-i, --install**
-: Install/update. Need super user.
-
-**-u, --uninstall**
-: Uninstall. Need super user.
-
 **-d, --data-path DATA_PATH** 
 : Path to directory with test data. If path is file, then script is runned only once with data from path file. If not included, then script is runned only once and waits for users input.
 
@@ -52,6 +46,9 @@ ptt - Test tool for ProgTest from CVUT FIT
 
 **-k, --keep-links**
 : Keeps link (.o) files from compilation.
+
+**-g, --generate**
+: Starts generator for new dataset and then tests the script. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
 
 **-m, --milli-seconds**
 : Time is counted in milliseconds.
@@ -74,6 +71,59 @@ ptt - Test tool for ProgTest from CVUT FIT
 
 **ptt -g -G '\\--leak-check=full' -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' under Valgrind with Valgrind argument '--leak-check' and compares output with template from dataset.
+
+# REGEX FOR GENERATOR
+Regex is similar to C/C++ scanf of prinf. Every value can have it's range. If range is not included then it is totaly random value. Range is symbolized with ",". If range is only one number than it is not range and value will be the number.
+
+## Specifiers
+
+**%c**
+: single character
+
+**%d**
+: decimal number (signed int)
+
+**%s**
+: string
+
+**%g**
+: double
+
+**%f**
+: float
+
+**%o**
+: octa number (NOT INCLUDED YET)
+
+**%u**
+: unsigned int (NOT INCLUDED YET)
+
+**%x**
+: hexadecimal number (NOT INCLUDED YET)
+
+**%X**
+: hexadecimal number uppercase (NOT INCLUDED YET)
+
+## Examples
+
+**%0,5d**
+: decimal number from 0 to 5 (5 not included)
+
+**%10,500s**
+: string with length from 10 to 500 characters (500 included, because ending zero)
+
+## Groups
+You can set that generator will generate more then one value of each type. For example there should be 100 to 200 lines of some values. So you write regex for those values and include them into group.
+
+Count of groups are at the end of group, like in examples. If range not included it will generate 0 to 100 times.
+
+## Examples for groups
+
+**$(%5,12d - %10s - %f\n)5,10$**
+: 5 to 10 lines with 1 decimal from 5 to 12 " - " 1 string length 10 " - " random float. 
+
+**$(%0,250d,%1,8f,%-10.54,150g\n)5,9$:%2,15s**
+5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is one 2 to 15 characters long string
 
 # AUTHORS
 Written by Jakub Anderle
