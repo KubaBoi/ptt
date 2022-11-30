@@ -3,7 +3,7 @@ import os
 
 root_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), ".."))
 path = os.path.join(root_path, "src", "ptt.py")
-m_path = os.path.join(root_path, "src", "manageClasses.py")
+m_path = os.path.join(root_path, "src", "managerClasses.py")
 control_path = os.path.join(root_path, "ptt", "DEBIAN", "control")
 
 with open(path, "r") as f:
