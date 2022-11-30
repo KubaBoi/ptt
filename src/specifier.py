@@ -12,7 +12,7 @@ class Specifier:
     @staticmethod
     def findLimits(val, min, max):
         limits = val.split(",")
-        if (len(limits) != 0):
+        if (val != ""):
             if (len(limits) == 1):
                 min = 0
                 max = float(limits[0])

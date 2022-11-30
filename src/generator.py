@@ -45,9 +45,10 @@ class Generator:
     }
 
     def __init__(self):
-        self.reg = input("Regex for your test data: ")
-        self.reg = self.reg.replace("\\n", "\n")
-        self.reg = self.reg.replace("\\t", "\t")
+        self.reg = "ahoj\n$(%d - %20s - %0,1f\n)50$"
+        #self.reg = input("Regex for your test data: ")
+        #self.reg = self.reg.replace("\\n", "\n")
+        #self.reg = self.reg.replace("\\t", "\t")
 
     def findSpecs(self, reg):
         specsValues = []
@@ -156,3 +157,5 @@ class Generator:
         if iteration == total: 
             print()
 
+g = Generator()
+g.generate(1)
