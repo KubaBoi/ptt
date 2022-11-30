@@ -4,6 +4,6 @@ Section: custom
 Priority: optional
 Architecture: all
 Essential: no
-Installed-Size: 1024
+Installed-Size: 2048
 Maintainer: https://github.com/KubaBoi
 Description: Test tool for ProgTests from CVUT FIT
