@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.29
+footer: ptt 0.5.30
 date: December 1, 2022
 ---
 
@@ -10,7 +10,7 @@ date: December 1, 2022
 ptt - Test tool for ProgTest from CVUT FIT
 
 # SYNOPSIS
-**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-g] [-G VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-m] [-s] [-n] filename
+**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-l] [-L VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-g] [-m] [-s] [-n] filename
 
 # DESCRIPTION
 **ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
@@ -29,10 +29,10 @@ ptt - Test tool for ProgTest from CVUT FIT
 **-d, --data-path DATA_PATH** 
 : Path to directory with test data. If path is file, then script is runned only once with data from path file. If not included, then script is runned only once and waits for users input.
 
-**-g, --valgrind**
+**-l, --valgrind**
 : Script is runned under Valgrind.
 
-**-G, --val-args**
+**-L, --val-args**
 : Arguments for Valgrind as string and needs to start with \ .
 
 **-D, --val-data**
