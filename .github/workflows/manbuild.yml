@@ -56,7 +56,7 @@ jobs:
         run: |
           dpkg-deb --build ptt
           cp ptt.deb "ptt_latest.deb"
-          cp ptt.deb "versions/ptt_${{ steps.promote.outputs.commitMessage }}.deb"
+          mv ptt.deb "versions/ptt_${{ steps.promote.outputs.commitMessage }}.deb"
 
       - name: commit files
         run: |
