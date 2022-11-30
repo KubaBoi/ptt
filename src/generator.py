@@ -1,5 +1,6 @@
 
 import os
+import random
 
 from specifier import *
 
@@ -112,7 +113,6 @@ class Generator:
             if (isinstance(val, list)):
                 min, max = Specifier.findLimits(val[0], 0, 1000)
                 cnt = random.randrange(int(min), int(max))
-                print(cnt)
                 vr = ""
                 for i in range(cnt):
                     vr += self.generateOne(val[2], val[1])
