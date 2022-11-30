@@ -31,7 +31,7 @@ class Specifier:
         val = val.replace("%", "").replace("d", "")
         min, max = Specifier.findLimits(val, -32768, 32768)
 
-        return random.randrange(int(min), int(max))
+        return str(random.randrange(int(min), int(max)))
 
     @staticmethod
     def string(val):
@@ -53,7 +53,7 @@ class Specifier:
             2.3*math.pow(10, -308),
             1.7*math.pow(10, 308))
         
-        return random.uniform(min, max)
+        return str(random.uniform(min, max))
 
     @staticmethod
     def flt(val):
@@ -62,5 +62,5 @@ class Specifier:
             1.2*math.pow(10, -38),
             3.4*math.pow(38))
         
-        return random.uniform(min, max)
+        return str(random.uniform(min, max))
 
