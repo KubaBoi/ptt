@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.31
+footer: ptt 0.5.32
 date: December 1, 2022
 ---
 
@@ -125,7 +125,7 @@ Count of groups are at the end of group, like in examples. If range not included
 : 5 to 10 lines with 1 decimal from 5 to 12 " - " 1 string length 10 " - " random float. 
 
 **\$(%0,250d,%1,8f,%-10.54,150g\n)5,9\$:%2,15s**
-5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is one 2 to 15 characters long string
+: 5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is one 2 to 15 characters long string
 
 # AUTHORS
 Written by Jakub Anderle
