@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.17
+version: 0.5.18
 """
 __docformat__ = "reStructedText"
 
