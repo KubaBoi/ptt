@@ -55,13 +55,15 @@ jobs:
       - name: Build package
         run: |
           dpkg-deb --build ptt
+          cp ptt.deb "ptt_latest.deb"
+          mv ptt.deb "versions/ptt_${{ steps.promote.outputs.commitMessage }}.deb"
 
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "${{ steps.promote.outputs.commitMessage }}" -a
+          git commit -m "Promoting version: ${{ steps.promote.outputs.commitMessage }}" -a
           
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0

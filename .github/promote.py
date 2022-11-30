@@ -16,7 +16,7 @@ for line in lines:
 		old_version = ".".join(vers)
 		v = int(vers[2]) + 1
 		vers[2] = str(v)
-		print("Promoting version:", ".".join(vers))
+		print(".".join(vers))
 
 # main		
 with open(path, "r") as f:
