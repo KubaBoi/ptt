@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.22
+version: 0.5.23
 """
 __docformat__ = "reStructedText"
 
@@ -144,7 +144,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "0.5.22"
+	VERSION = "0.5.23"
 
 
 class C:
@@ -237,7 +237,7 @@ class Specifier:
         val = val.replace("%", "").replace("f", "")
         min, max = Specifier.findLimits(val,
             1.2*math.pow(10, -38),
-            3.4*math.pow(38))
+            3.4*math.pow(10, 38))
         
         return str(random.uniform(min, max))
 
