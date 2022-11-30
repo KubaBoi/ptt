@@ -2,14 +2,6 @@
 
 Script for testing ProgTest from CVUT FIT
 
-## Build
-
-Not necessary
-
-`sudo apt install nuitka`
-
-`nuitka3 ptt.py`
-
 ## Run
 
 `./ptt.py [args]`
@@ -18,17 +10,9 @@ Not necessary
 
 ## INSTALATION
 
-Download `ptt.py` from https://github.com/KubaBoi/ptt/blob/master/ptt.py (or just copy content and make file with that content inside named `ptt.py`)
+`wget https://github.com/KubaBoi/ptt/raw/master/ptt_latest.deb`
 
-Run:
-
-`sudo chmod +x ptt.py`
-
-`sudo ./ptt.py -i`
-
-Script will be installed inside your `/usr/bin` directory and also will be made manual page in `/usr/share/man/man1` directory.
-
-Make sure you are connected to internet. Otherwise latest version will not be downloaded and `man ptt` will not be functional or if you are updating `ptt` there may be old version of manual.
+`sudo apt install ./ptt_latest.deb`
 
 ## DOC
 
@@ -41,3 +25,11 @@ Make sure you are connected to internet. Otherwise latest version will not be do
 `dpkg-deb --build ptt.pack`
 
 `mv ptt.pack.deb ptt-version_amd64.deb`
+
+## Build
+
+Not necessary
+
+`sudo apt install nuitka`
+
+`nuitka3 ptt.py`
