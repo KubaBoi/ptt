@@ -43,8 +43,8 @@ class Specifier:
         else:
             length = max
 
-        return random.choices(string.ascii_letters + string.digits,
-                k=length)
+        return "".join(random.choices(string.ascii_letters + string.digits,
+                k=length))
 
     @staticmethod
     def double(val):
