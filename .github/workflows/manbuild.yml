@@ -54,7 +54,7 @@ jobs:
 
       - name: Build package
         run: |
-          dpkg-deb --build ptt
+          dpkg-deb -v --build -Z gzip ptt
           cp ptt.deb "ptt_latest.deb"
           mv ptt.deb "versions/ptt_${{ steps.promote.outputs.commitMessage }}.deb"
 
