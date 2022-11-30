@@ -60,7 +60,7 @@ class Specifier:
         val = val.replace("%", "").replace("f", "")
         min, max = Specifier.findLimits(val,
             1.2*math.pow(10, -38),
-            3.4*math.pow(38))
+            3.4*math.pow(10, 38))
         
         return str(random.uniform(min, max))
 
