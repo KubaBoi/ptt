@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-from manageClasses import M, C
+from managerClasses import M, C
 
 class Compilator:
 

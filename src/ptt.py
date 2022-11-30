@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.19
+version: 0.5.18
 """
 __docformat__ = "reStructedText"
 
@@ -11,9 +11,10 @@ import sys
 import subprocess
 import argparse
 
-from manageClasses import *
+from managerClasses import *
 from compilator import Compilator
 from runner import Runner
+from generator import Generator
 #ENDIMPORT
 
 def main():
@@ -24,7 +25,7 @@ def main():
 	parser = argparse.ArgumentParser(
 		prog="ptt",
 		description="Test tool for ProgTest from CVUT FIT",
-		epilog="Neco neco")
+		epilog="Full documentation 'man ptt'")
 		
 	parser.add_argument("filename", 
 			help="Path to C/C++ script")
@@ -38,9 +39,9 @@ def main():
 			
 	parser.add_argument("-d", "--data-path", action="store", default=False,
 		        help="Path to directory with test data. If path is file, then script is runned only once with data from path file. If not included, then script is runned only once and waits for users input.")
-	parser.add_argument("-g", "--valgrind", action="store_true",
+	parser.add_argument("-l", "--valgrind", action="store_true",
 			help="Script is runned under Valgrind")
-	parser.add_argument("-G", "--val-args", action="store", default="",
+	parser.add_argument("-L", "--val-args", action="store", default="",
 			help="Arguments for Valgrind as string and needs to start with \\")
 	parser.add_argument("-D", "--val-data", action="store", default="",
 			help="Data for Valgrind as string")
@@ -50,6 +51,9 @@ def main():
 			help="Arguments for compiler (default is '-Wall -pedantic')")
 	parser.add_argument("-k", "--keep-links", action="store_true", default=False,
 			help="Keeps link (.o) files from compilation")
+
+	parser.add_argument("-g", "--generate", action="store_true", default=False,
+			help="Starts generator for new dataset and then tests the script")
 			
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
@@ -109,5 +113,10 @@ if (__name__ == "__main__"):
 	if (len(args) > 1):
 		if (args[1] == "-v" or args[1] == "--version"):
 			exit(f"ProgTestTest v({V.VERSION})")
+		elif (args[1] == "-g" or args[1] == "--generate"):
+			g = Generator()
+			count = int(input("How many files do you want to generate? "))
+			g.generate(count)
+			exit()
 	exit(main())
 

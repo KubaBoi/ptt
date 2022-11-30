@@ -3,7 +3,7 @@ import os
 import time
 import subprocess
 
-from manageClasses import C
+from managerClasses import C
 
 class Runner:
 	
