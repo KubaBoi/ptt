@@ -9,7 +9,7 @@ def readLines(file_path):
     if (not os.path.exists(file_path)):
         raise FileNotFoundError()
 
-    with open(file_path, "r") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         data_lines = f.read().split("\n")
     return data_lines
 
@@ -69,5 +69,5 @@ classes = findClasses(main_dir)
 main = getMainNoImports(main_file)
 imps = prepareImports(imports, classes)
 
-with open(os.path.join(package_dir, "usr", "bin", "ptt"), "w") as f:
+with open(os.path.join(package_dir, "usr", "bin", "ptt"), "w", encoding="utf-8") as f:
     f.write(main.replace("#IMPORT", imps))
