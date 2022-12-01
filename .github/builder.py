@@ -9,6 +9,9 @@ def readLines(file_path):
     if (not os.path.exists(file_path)):
         raise FileNotFoundError()
 
+    if (not file_path.endswith(".py")):
+        return []
+
     with open(file_path, "r", encoding="utf-8") as f:
         data_lines = f.read().split("\n")
     return data_lines
