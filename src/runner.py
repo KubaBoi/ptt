@@ -20,7 +20,10 @@ class Runner:
 	@staticmethod
 	def run(script_path, input_file, output_file, cmd):
 		index = cmd.index(f"./{script_path.replace('.c', '')}")
-		cmd[index] += f" < \"{input_file}\" > \"{output_file}\""
+		if (C.TESTS):
+			cmd[index] += f" < \"{input_file}\" > \"{output_file}\""
+		else:
+			cmd[index] += f" < \"{input_file}\""
 		tm = time.time()
 		ret = subprocess.call(" ".join(cmd), shell=True)
 		return ret, time.time() - tm
@@ -48,7 +51,7 @@ class Runner:
 			
 			fails = Runner.runOneFile(script_path, files_path, cmd)
 			
-		C.prnt(20*"=")
+		C.prnt(C.HEADER + 20*"=" + C.ENDC)
 		C.prnt(f"Test count: {counter}")
 		C.prnt(f"Failed tests: {fails}")
 		
@@ -58,6 +61,8 @@ class Runner:
 		if (ret != 0):
 			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
 		
+		if (not C.TESTS): return 0
+
 		with open("tmp.txt", "r", encoding="utf-8") as f:
 			out = f.read()
 		os.remove("tmp.txt")

@@ -41,6 +41,7 @@ class C:
 	
 	SILENT = False
 	MILLI_SECONDS = False
+	TESTS = True
 	
 	@staticmethod
 	def noColors():
@@ -55,6 +56,10 @@ class C:
 	@staticmethod
 	def milliseconds():
 		C.MILLI_SECONDS = True
+
+	@staticmethod
+	def tests():
+		C.TESTS = False
 			
 	@staticmethod
 	def prnt(*str):
