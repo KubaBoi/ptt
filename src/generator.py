@@ -156,6 +156,3 @@ class Generator:
         # Print New Line on Complete
         if iteration == total: 
             print()
-
-g = Generator()
-g.generate(10)
