@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.35
+version: 0.5.36
 """
 __docformat__ = "reStructedText"
 
@@ -144,7 +144,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "0.5.35"
+	VERSION = "0.5.36"
 
 
 class C:
@@ -470,9 +470,6 @@ class Generator:
         # Print New Line on Complete
         if iteration == total: 
             print()
-
-g = Generator()
-g.generate(10)
 
 
 def main():
