@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.32
+version: 0.5.33
 """
 __docformat__ = "reStructedText"
 
@@ -144,7 +144,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "0.5.32"
+	VERSION = "0.5.33"
 
 
 class C:
@@ -189,7 +189,7 @@ class Specifier:
     @staticmethod
     def findLimits(val, min, max):
         limits = val.split(",")
-        if (len(limits) != 0):
+        if (val != ""):
             if (len(limits) == 1):
                 min = 0
                 max = float(limits[0])
@@ -332,9 +332,10 @@ class Generator:
     }
 
     def __init__(self):
-        self.reg = input("Regex for your test data: ")
-        self.reg = self.reg.replace("\\n", "\n")
-        self.reg = self.reg.replace("\\t", "\t")
+        self.reg = "ahoj\n$(%d - %20s - %0,1f\n)50$"
+        #self.reg = input("Regex for your test data: ")
+        #self.reg = self.reg.replace("\\n", "\n")
+        #self.reg = self.reg.replace("\\t", "\t")
 
     def findSpecs(self, reg):
         specsValues = []
@@ -443,7 +444,8 @@ class Generator:
         if iteration == total: 
             print()
 
-
+g = Generator()
+g.generate(1)
 
 
 def main():
