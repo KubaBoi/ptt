@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.34
+version: 0.5.35
 """
 __docformat__ = "reStructedText"
 
@@ -144,7 +144,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "0.5.34"
+	VERSION = "0.5.35"
 
 
 class C:
@@ -241,6 +241,33 @@ class Specifier:
         
         return str(random.uniform(min, max))
 
+    @staticmethod
+    def octa(val):
+        val = val.replace("%", "").replace("o", "")
+        s = Specifier.decimal(val)
+        return oct(int(s))
+
+    @staticmethod
+    def unsigned(val):
+        val = val.replace("%", "").replace("u", "")
+        min, max = Specifier.findLimits(val, 0, 65536)
+
+        if (min < 0): min = 0
+
+        return str(random.randrange(int(min), int(max)))
+
+    @staticmethod
+    def hexa(val):
+        val = val.replace("%", "").replace("x", "")
+        s = Specifier.decimal(val)
+        return hex(int(s))
+
+    @staticmethod
+    def hexA(val):
+        val = val.replace("%", "").replace("X", "")
+        s = Specifier.decimal(val)
+        return hex(int(s)).upper()
+
 
 
 class Compilator:
@@ -328,10 +355,11 @@ class Generator:
         "o": "octa",
         "u": "unsigned",
         "x": "hexa",
-        "X": "hexa"
+        "X": "hexA"
     }
 
     def __init__(self):
+        #self.reg = "$(%0,250d,%100,8000x,%100,8000X,%o,%-10.54,150g\n)5,9$:%2,15s"
         self.reg = input("Regex for your test data: ")
         self.reg = self.reg.replace("\\n", "\n")
         self.reg = self.reg.replace("\\t", "\t")
@@ -442,6 +470,9 @@ class Generator:
         # Print New Line on Complete
         if iteration == total: 
             print()
+
+g = Generator()
+g.generate(10)
 
 
 def main():
