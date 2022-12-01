@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.34
+footer: ptt 0.5.35
 date: December 1, 2022
 ---
 
@@ -14,6 +14,8 @@ ptt - Test tool for ProgTest from CVUT FIT
 
 # DESCRIPTION
 **ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
+
+You can generate own random datasets. Those are not for checking functionality of your program but for checking of your memory management thanks to randomness.
 
 # POSITIONAL ARGUMENTS
 **filename**
@@ -93,16 +95,16 @@ Regex is similar to C/C++ scanf or prinf. Every value can have it's range. If ra
 : float
 
 **%o**
-: octa number (NOT INCLUDED YET)
+: octadecimal number 
 
 **%u**
-: unsigned int (NOT INCLUDED YET)
+: unsigned int 
 
 **%x**
-: hexadecimal number (NOT INCLUDED YET)
+: hexadecimal number 
 
 **%X**
-: hexadecimal number uppercase (NOT INCLUDED YET)
+: hexadecimal number uppercase 
 
 ## Examples
 

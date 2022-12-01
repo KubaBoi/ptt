@@ -41,10 +41,11 @@ class Generator:
         "o": "octa",
         "u": "unsigned",
         "x": "hexa",
-        "X": "hexa"
+        "X": "hexA"
     }
 
     def __init__(self):
+        #self.reg = "$(%0,250d,%100,8000x,%100,8000X,%o,%-10.54,150g\n)5,9$:%2,15s"
         self.reg = input("Regex for your test data: ")
         self.reg = self.reg.replace("\\n", "\n")
         self.reg = self.reg.replace("\\t", "\t")
@@ -155,3 +156,6 @@ class Generator:
         # Print New Line on Complete
         if iteration == total: 
             print()
+
+g = Generator()
+g.generate(10)

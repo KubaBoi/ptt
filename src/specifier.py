@@ -64,3 +64,30 @@ class Specifier:
         
         return str(random.uniform(min, max))
 
+    @staticmethod
+    def octa(val):
+        val = val.replace("%", "").replace("o", "")
+        s = Specifier.decimal(val)
+        return oct(int(s))
+
+    @staticmethod
+    def unsigned(val):
+        val = val.replace("%", "").replace("u", "")
+        min, max = Specifier.findLimits(val, 0, 65536)
+
+        if (min < 0): min = 0
+
+        return str(random.randrange(int(min), int(max)))
+
+    @staticmethod
+    def hexa(val):
+        val = val.replace("%", "").replace("x", "")
+        s = Specifier.decimal(val)
+        return hex(int(s))
+
+    @staticmethod
+    def hexA(val):
+        val = val.replace("%", "").replace("X", "")
+        s = Specifier.decimal(val)
+        return hex(int(s)).upper()
+
