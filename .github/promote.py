@@ -6,7 +6,7 @@ path = os.path.join(root_path, "src", "ptt.py")
 m_path = os.path.join(root_path, "src", "managerClasses.py")
 control_path = os.path.join(root_path, "ptt", "DEBIAN", "control")
 
-with open(path, "r") as f:
+with open(path, "r", encoding="utf-8") as f:
 	lines = f.readlines()
 	
 old_version = ""
@@ -19,22 +19,22 @@ for line in lines:
 		print(".".join(vers))
 
 # main		
-with open(path, "r") as f:
+with open(path, "r", encoding="utf-8") as f:
 	content = f.read()
-with open(path, "w") as f:
+with open(path, "w", encoding="utf-8") as f:
 	f.write(content.replace(old_version, ".".join(vers)))
 
 # manageClasse
-with open(m_path, "r") as f:
+with open(m_path, "r", encoding="utf-8") as f:
 	content = f.read()
-with open(m_path, "w") as f:
+with open(m_path, "w", encoding="utf-8") as f:
 	f.write(content.replace(old_version, ".".join(vers)))
 
 
 # CONTROL
 
 new_control = ""
-with open(control_path, "r") as f:
+with open(control_path, "r", encoding="utf-8") as f:
 	data_lines = f.readlines()
 
 for line in data_lines:
@@ -43,5 +43,5 @@ for line in data_lines:
 	else:
 		new_control += line
 	
-with open(control_path, "w") as f:
+with open(control_path, "w", encoding="utf-8") as f:
 	f.write(new_control)
