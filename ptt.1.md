@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 0.5.37
+footer: ptt 0.5.38
 date: December 1, 2022
 ---
 
@@ -53,7 +53,7 @@ You can generate own random datasets. Those are not for checking functionality o
 : Starts generator for new dataset and then tests the script. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
 
 **-t, --tests**
-: Runs all tests but does not compare them with output templates. Only prints script output.
+: Runs all tests but does not compare them with output templates. Only prints script output and input.
 
 **-m, --milli-seconds**
 : Time is counted in milliseconds.

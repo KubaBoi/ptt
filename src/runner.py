@@ -54,9 +54,22 @@ class Runner:
 		C.prnt(C.HEADER + 20*"=" + C.ENDC)
 		C.prnt(f"Test count: {counter}")
 		C.prnt(f"Failed tests: {fails}")
+
+	@staticmethod
+	def printInput(file):
+		with open(file, "r", encoding="utf-8") as f:
+				in_data = f.read()
+		C.prnt("")
+		C.prnt("Input:")		
+		C.prnt(in_data)
 		
 	@staticmethod
 	def runOneFile(script_path, file, cmd):
+		if (not C.TESTS): 
+			Runner.printInput(file)
+			C.prnt("")
+			C.prnt("Output:")
+
 		ret, tm = Runner.run(script_path, file, "tmp.txt", cmd.copy())
 		if (ret != 0):
 			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
@@ -71,13 +84,7 @@ class Runner:
 			temp = fo.read()
 		
 		if (temp != out):	
-			with open(file, "r", encoding="utf-8") as f:
-				in_data = f.read()
-			
-			C.prnt("")
-			C.prnt("Input:")
-			
-			C.prnt(in_data)
+			Runner.printInput(file)
 			
 			out_split = out.split("\n")
 			temp_split = temp.split("\n")

@@ -52,7 +52,7 @@ def main():
 			help="Starts generator for new dataset and then tests the script")
 			
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
-			help="Runs all tests but does not compare them with output templates. Only prints script output.")
+			help="Runs all tests but does not compare them with output templates. Only prints script output and input.")
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
