@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.37
+version: 0.5.38
 """
 __docformat__ = "reStructedText"
 
@@ -65,9 +65,22 @@ class Runner:
 		C.prnt(C.HEADER + 20*"=" + C.ENDC)
 		C.prnt(f"Test count: {counter}")
 		C.prnt(f"Failed tests: {fails}")
+
+	@staticmethod
+	def printInput(file):
+		with open(file, "r", encoding="utf-8") as f:
+				in_data = f.read()
+		C.prnt("")
+		C.prnt("Input:")		
+		C.prnt(in_data)
 		
 	@staticmethod
 	def runOneFile(script_path, file, cmd):
+		if (not C.TESTS): 
+			Runner.printInput(file)
+			C.prnt("")
+			C.prnt("Output:")
+
 		ret, tm = Runner.run(script_path, file, "tmp.txt", cmd.copy())
 		if (ret != 0):
 			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
@@ -82,13 +95,7 @@ class Runner:
 			temp = fo.read()
 		
 		if (temp != out):	
-			with open(file, "r", encoding="utf-8") as f:
-				in_data = f.read()
-			
-			C.prnt("")
-			C.prnt("Input:")
-			
-			C.prnt(in_data)
+			Runner.printInput(file)
 			
 			out_split = out.split("\n")
 			temp_split = temp.split("\n")
@@ -149,7 +156,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "0.5.37"
+	VERSION = "0.5.38"
 
 
 class C:
@@ -517,7 +524,7 @@ def main():
 			help="Starts generator for new dataset and then tests the script")
 			
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
-			help="Runs all tests but does not compare them with output templates. Only prints script output.")
+			help="Runs all tests but does not compare them with output templates. Only prints script output and input.")
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
