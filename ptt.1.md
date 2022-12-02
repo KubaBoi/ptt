@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.2
+footer: ptt 1.0.3
 date: December 2, 2022
 ---
 
@@ -130,7 +130,6 @@ Count of groups are at the end of group, like in examples. If range not included
 : 5 to 10 lines with 1 decimal from 5 to 12 " - " 1 string length 10 " - " random float.
 ```
 Example generated file:
-
 9 - S2rz - 3.8328348747078637e+37
 7 -  - 4.926247000847152e+37
 7 - 6uvED3Jm - 1.5525009816519334e+37
@@ -144,7 +143,6 @@ Example generated file:
 : 5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is ":" and one 2 to 15 characters long string.
 ```
 Example generated file:
-
 73, 4.445772835342223, 146.17131540588755
 188, 4.465919464359487, 12.900279129182966
 217, 2.7150156163309758, 115.90500331811384
