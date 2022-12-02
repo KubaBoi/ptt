@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.4
+footer: ptt 1.0.5
 date: December 2, 2022
 ---
 
@@ -86,7 +86,8 @@ Regex is similar to C/C++ scanf or prinf. Every value can have it's range. If ra
 : single character
 
 **%d**
-: decimal number (signed int)
+: decimal number (signed int)Example generated file:
+
 
 **%s**
 : string
@@ -139,7 +140,7 @@ Example of generated file:
 ```
 
 
-**\$(%0,250d,%1,8f,%-10.54,150g\\n)5,9\$:%2,15s**
+**\$(%0,250d, %1,8f, %-10.54,150g\\n)5,9\$:%2,15s**
 : 5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is ":" and one 2 to 15 characters long string.
 ```
 Example of generated file:
