@@ -38,16 +38,16 @@ class Runner:
 		if (os.path.isdir(files_path)):
 			files = Runner.readFiles(files_path)
 
-			for i, file in enumerate(files):
-				if (i % 3 != 0): continue
+			for file in files:
+				if (file.find("_in") == -1): continue
 				
-				C.prnt("");
+				C.prnt("")
 				C.prnt(f"{C.HEADER}{5*'='}Test {counter}. - {file}{5*'='}{C.ENDC}")
 				counter += 1
 				
 				fails += Runner.runOneFile(os.path.join(files_path, file), cmd)
 		else:
-			C.prnt("");
+			C.prnt("")
 			C.prnt(f"{C.HEADER}{5*'='}Test {counter}. - {files_path}{5*'='}{C.ENDC}")
 			counter += 1
 			
@@ -100,6 +100,12 @@ class Runner:
 		temp_file = file
 		if (C.TESTS):
 			temp_file = temp_file.replace("in", "out")
+
+		if (not os.path.exists(temp_file)):
+			temp_file = file
+			C.prnt(f"{C.WARNING}!!!MISSING TEMPLATE FILE!!!{C.ENDC}")
+			C.prnt(f"{C.WARNING}Comparing with input file{C.ENDC}")
+			C.prnt(f"{C.WARNING}Rerun with -t parameter to get rid of this warning{C.ENDC}")
 
 		with open(temp_file, "r", encoding="utf-8") as fo:
 			temp = fo.read()
