@@ -52,7 +52,7 @@ def main():
 			help="Starts generator for new dataset and then tests the script")
 			
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
-			help="Runs all tests but does not compare them with output templates. Only prints script output and input.")
+			help="Runs tests but does not compare them with output templates but with it's input.")
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
@@ -91,7 +91,7 @@ def main():
 		if (not args.data_path):
 			subprocess.call(cmd)
 		else:
-			Runner.runTests(script_path, args.data_path, cmd)
+			Runner.runTests(args.data_path, cmd)
 		
 		C.prnt("\n")
 		C.prnt("Testing done:")
