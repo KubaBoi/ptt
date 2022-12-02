@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.0
+footer: ptt 1.0.1
 date: December 2, 2022
 ---
 
@@ -126,11 +126,31 @@ Count of groups are at the end of group, like in examples. If range not included
 
 ## Examples for groups
 
-**\$(%5,12d - \%10s - \%f\n)5,10\$**
+**\$(%5,12d - %10s - %f\\n)5,10\$**
 : 5 to 10 lines with 1 decimal from 5 to 12 " - " 1 string length 10 " - " random float. 
+```
+9 - S2rz - 3.8328348747078637e+37
+7 -  - 4.926247000847152e+37
+7 - 6uvED3Jm - 1.5525009816519334e+37
+8 -  - 1.7615361925092063e+37
+11 - AmJZ - 2.075909449890427e+38
+11 - fPWdo7J0 - 2.1674784130879944e+38
+```
 
-**\$(%0,250d,%1,8f,%-10.54,150g\n)5,9\$:%2,15s**
-: 5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is one 2 to 15 characters long string
+
+**\$(%0,250d,%1,8f,%-10.54,150g\\n)5,9\$:%2,15s**
+: 5 to 9 lines with 1 decimal from 0 to 250 "," float from 1 to 8 "," double from 10.54 to 150 and at the end of whole file is ":" and one 2 to 15 characters long string
+
+```
+73, 4.445772835342223, 146.17131540588755
+188, 4.465919464359487, 12.900279129182966
+217, 2.7150156163309758, 115.90500331811384
+92, 2.2112414659558794, 35.54010634748203
+117, 5.811310246641262, 42.38128446686212
+133, 4.131879588745505, 76.45844625121993
+1, 5.192964977710644, 76.70838507583821
+:2,15s  
+```
 
 # AUTHORS
 Written by Jakub Anderle
