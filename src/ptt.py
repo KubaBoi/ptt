@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 0.5.40
+version: 1.0.-1
 """
 __docformat__ = "reStructedText"
 
@@ -104,9 +104,9 @@ def main():
 			C.prnt(f"{C.WARNING}WARNING - there is missing -Wall or -pedantic in compilation{C.ENDC}")
 		if (not args.valgrind):
 			if (args.val_args != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-V) specified but valgrind (-v) is not enabled{C.ENDC}")
+				C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-L) specified but valgrind (-l) is not enabled{C.ENDC}")
 			if (args.val_data != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-v) is not enabled{C.ENDC}")
+				C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-l) is not enabled{C.ENDC}")
 
 if (__name__ == "__main__"):
 	args = args = sys.argv
