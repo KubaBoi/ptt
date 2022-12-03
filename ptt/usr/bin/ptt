@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 1.0.5
+version: 1.0.6
 """
 __docformat__ = "reStructedText"
 
@@ -31,13 +31,19 @@ class Runner:
 	@staticmethod
 	def run(input_file, cmd):
 		tm = time.time()
-		process = subprocess.Popen(cmd, text=True,
-			stdin=open(input_file, "rb"),
-			stdout=subprocess.PIPE,
-			stderr=subprocess.STDOUT)
+		if (C.RAW):			
+			process = subprocess.Popen(cmd, text=True,
+				stdin=open(input_file, "rb"))
+		else:
+			process = subprocess.Popen(cmd, text=True,
+				stdin=open(input_file, "rb"),
+				stdout=subprocess.PIPE,
+				stderr=subprocess.STDOUT)
 
 		ret = process.wait()
-		out = process.stdout.read()
+		out = None
+		if (not C.RAW):
+			out = process.stdout.read()
 
 		return ret, out, time.time() - tm
 
@@ -104,10 +110,21 @@ class Runner:
 		
 	@staticmethod
 	def runOneFile(file, cmd):
+		if (C.RAW):
+			Runner.printInput(file)
+			C.prnt("")
+			C.prnt("Output:")
+
 		ret, out, tm = Runner.run(file, cmd.copy())
 		if (ret != 0):
 			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
 		
+		if (C.RAW):
+			C.prnt("")
+			C.prnt(5*"=")
+			C.prnt(f"Time: {Runner.convertTime(tm)}")
+			return 0
+
 		temp_file = file
 		if (C.TESTS):
 			temp_file = temp_file.replace("in", "out")
@@ -184,7 +201,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "1.0.5"
+	VERSION = "1.0.6"
 
 
 class C:
@@ -200,6 +217,7 @@ class C:
 	
 	SILENT = False
 	MILLI_SECONDS = False
+	RAW = False
 	TESTS = True
 	
 	@staticmethod
@@ -215,6 +233,10 @@ class C:
 	@staticmethod
 	def milliseconds():
 		C.MILLI_SECONDS = True
+
+	@staticmethod
+	def raw():
+		C.RAW = True
 
 	@staticmethod
 	def tests():
@@ -569,9 +591,11 @@ def main():
 
 	parser.add_argument("-g", "--generate", action="store_true", default=False,
 			help="Starts generator for new dataset and then tests the script")
-			
+	
+	parser.add_argument("-r", "--raw", action="store_true", default=False,
+			help="Runs tests but only prints output to terminal. Does not compare with anything")
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
-			help="Runs tests but does not compare them with output templates but with it's input.")
+			help="Runs tests but does not compare them with output templates but with it's input")
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
@@ -588,6 +612,8 @@ def main():
 		C.silent()
 	if (args.milli_seconds):
 		C.milliseconds()
+	if (args.raw):
+		C.raw()
 	if (args.tests):
 		C.tests()
 	
