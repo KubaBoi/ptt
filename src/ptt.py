@@ -50,9 +50,11 @@ def main():
 
 	parser.add_argument("-g", "--generate", action="store_true", default=False,
 			help="Starts generator for new dataset and then tests the script")
-			
+	
+	parser.add_argument("-r", "--raw", action="store_true", default=False,
+			help="Runs tests but only prints output to terminal. Does not compare with anything")
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
-			help="Runs tests but does not compare them with output templates but with it's input.")
+			help="Runs tests but does not compare them with output templates but with it's input")
 	parser.add_argument("-m", "--milli-seconds", action="store_true", default=False,
 			help="Time is counted in milliseconds")
 	parser.add_argument("-s", "--silent", action="store_true", default=False,
@@ -69,6 +71,8 @@ def main():
 		C.silent()
 	if (args.milli_seconds):
 		C.milliseconds()
+	if (args.raw):
+		C.raw()
 	if (args.tests):
 		C.tests()
 	

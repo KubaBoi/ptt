@@ -2,8 +2,8 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.5
-date: December 2, 2022
+footer: ptt 1.0.6
+date: December 3, 2022
 ---
 
 # ProgTestTest
@@ -51,6 +51,9 @@ You can generate own random datasets. Those are not for checking functionality o
 
 **-g, --generate**
 : Starts generator for new dataset and then tests the script. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
+
+**-r, --raw**
+: Runs tests but only prints output to terminal. Does not compare with anything.
 
 **-t, --tests**
 : Runs tests but does not compare them with output templates but with it's input.

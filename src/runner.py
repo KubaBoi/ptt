@@ -20,13 +20,19 @@ class Runner:
 	@staticmethod
 	def run(input_file, cmd):
 		tm = time.time()
-		process = subprocess.Popen(cmd, text=True,
-			stdin=open(input_file, "rb"),
-			stdout=subprocess.PIPE,
-			stderr=subprocess.STDOUT)
+		if (C.RAW):			
+			process = subprocess.Popen(cmd, text=True,
+				stdin=open(input_file, "rb"))
+		else:
+			process = subprocess.Popen(cmd, text=True,
+				stdin=open(input_file, "rb"),
+				stdout=subprocess.PIPE,
+				stderr=subprocess.STDOUT)
 
 		ret = process.wait()
-		out = process.stdout.read()
+		out = None
+		if (not C.RAW):
+			out = process.stdout.read()
 
 		return ret, out, time.time() - tm
 
@@ -93,10 +99,21 @@ class Runner:
 		
 	@staticmethod
 	def runOneFile(file, cmd):
+		if (C.RAW):
+			Runner.printInput(file)
+			C.prnt("")
+			C.prnt("Output:")
+
 		ret, out, tm = Runner.run(file, cmd.copy())
 		if (ret != 0):
 			C.prnt(f"{C.WARNING}{10*'='}Process ended with code {C.OKBLUE}{ret}{C.WARNING}{10*'='}{C.ENDC}")			
 		
+		if (C.RAW):
+			C.prnt("")
+			C.prnt(5*"=")
+			C.prnt(f"Time: {Runner.convertTime(tm)}")
+			return 0
+
 		temp_file = file
 		if (C.TESTS):
 			temp_file = temp_file.replace("in", "out")

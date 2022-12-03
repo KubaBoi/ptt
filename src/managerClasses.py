@@ -41,6 +41,7 @@ class C:
 	
 	SILENT = False
 	MILLI_SECONDS = False
+	RAW = False
 	TESTS = True
 	
 	@staticmethod
@@ -56,6 +57,10 @@ class C:
 	@staticmethod
 	def milliseconds():
 		C.MILLI_SECONDS = True
+
+	@staticmethod
+	def raw():
+		C.RAW = True
 
 	@staticmethod
 	def tests():
