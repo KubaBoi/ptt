@@ -15,6 +15,7 @@ from managerClasses import *
 from compilator import Compilator
 from runner import Runner
 from generator import Generator
+from builder import Builder
 #ENDIMPORT
 
 def main():
@@ -50,7 +51,9 @@ def main():
 
 	parser.add_argument("-g", "--generate", action="store_true", default=False,
 			help="Starts generator for new dataset and then tests the script")
-	
+	parser.add_argument("-o", "--output", action="store", default="",
+			help="Makes one .c file from all .h and .c source files. And runs this one .c file")
+
 	parser.add_argument("-r", "--raw", action="store_true", default=False,
 			help="Runs tests but only prints output to terminal. Does not compare with anything")
 	parser.add_argument("-t", "--tests", action="store_true", default=False,
@@ -64,6 +67,7 @@ def main():
 	
 	args = parser.parse_args()
 	script_path = args.filename
+	is_one_file = False
 	
 	if (args.no_colors):
 		C.noColors()
@@ -75,6 +79,13 @@ def main():
 		C.raw()
 	if (args.tests):
 		C.tests()
+	if (args.output != ""):
+		is_one_file = True
+		script_path = Builder.build(script_path, args.output)
+		if (script_path == 0): 
+			C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
+			C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
+			return
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
@@ -88,7 +99,7 @@ def main():
 	compiler = args.compiler
 	compiler_args = args.compiler_args.replace("\\", "").split(" ")
 	
-	if (Compilator.compile(script_path, compiler, compiler_args) == 0):
+	if (Compilator.compile(script_path, compiler, compiler_args, is_one_file) == 0):
 		if (not args.keep_links):
 			Compilator.removeLinks(script_path)
 	

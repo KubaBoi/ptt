@@ -2,8 +2,8 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.6
-date: December 3, 2022
+footer: ptt 1.0.7
+date: December 8, 2022
 ---
 
 # ProgTestTest
@@ -50,7 +50,10 @@ You can generate own random datasets. Those are not for checking functionality o
 : Keeps link (.o) files from compilation.
 
 **-g, --generate**
-: Starts generator for new dataset and then tests the script. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
+: Starts generator for new dataset. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
+
+**-o, --output**
+: Makes one .c file from all .h and .c source files. And runs this one .c file.
 
 **-r, --raw**
 : Runs tests but only prints output to terminal. Does not compare with anything.
@@ -74,10 +77,10 @@ You can generate own random datasets. Those are not for checking functionality o
 **ptt -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' and compares output with template from dataset.
 
-**ptt -g cvika/ukol.c**
+**ptt -l cvika/ukol.c**
 : Runs script once and waits for user's input under Valgrind.
 
-**ptt -g -G '\\--leak-check=full' -d 'cvika/sample/CZE' cvika/ukol.c**
+**ptt -l -L '\\--leak-check=full' -d 'cvika/sample/CZE' cvika/ukol.c**
 : Runs script for every test dataset from directory 'cvika/sample/CZE' under Valgrind with Valgrind argument '--leak-check' and compares output with template from dataset.
 
 # REGEX FOR GENERATOR
