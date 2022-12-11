@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 1.0.8
+version: 1.0.9
 """
 __docformat__ = "reStructedText"
 
@@ -37,7 +37,6 @@ class Builder:
 * https://github.com/KubaBoi/ptt
 *
 * version: {V.VERSION}
-* author: Jakub Anderle
 */
 
 """
@@ -312,7 +311,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "1.0.8"
+	VERSION = "1.0.9"
 
 
 class C:
