@@ -24,7 +24,6 @@ class Builder:
 * https://github.com/KubaBoi/ptt
 *
 * version: {V.VERSION}
-* author: Jakub Anderle
 */
 
 """
