@@ -75,7 +75,8 @@ class Builder:
         
         includes = []
         for line in header_lines:
-            if (line.lower().startswith("#include")):
+            low_line = line.lower().strip()
+            if (low_line.startswith("#include")):
                 parts = line.split("\"")
                 if (len(parts) != 3): 
                     includes.append(line)
@@ -93,7 +94,9 @@ class Builder:
 
                 for incl in cont[1]:
                     if (incl not in includes): includes.append(incl)
-            elif (line.lower().startswith("#define") or not hasSrc):
+            elif ((low_line.startswith("#define") and
+                not low_line.endswith("_h")) or
+                not hasSrc):
                 content += line
                 
 
