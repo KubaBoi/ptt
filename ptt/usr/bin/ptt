@@ -2,7 +2,7 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 1.0.10
+version: 1.0.11
 """
 __docformat__ = "reStructedText"
 
@@ -314,7 +314,7 @@ $(NAME): $(OBJFILES)
 
 
 class V:
-	VERSION = "1.0.10"
+	VERSION = "1.0.11"
 
 
 class C:
@@ -332,6 +332,7 @@ class C:
 	MILLI_SECONDS = False
 	RAW = False
 	TESTS = True
+	FFLUSH = True
 	
 	@staticmethod
 	def noColors():
@@ -358,6 +359,10 @@ class C:
 	@staticmethod
 	def prnt(*str):
 		if (not C.SILENT): print(*str)
+
+	@staticmethod
+	def fflush():
+		C.FFLUSH = False
 
 class InvalidRegex(Exception):
     def __init__(self, description):
@@ -482,7 +487,7 @@ class Compilator:
 			data_lines = f.readlines()
 
 		for i, line in enumerate(data_lines):
-			if (line.strip().startswith("printf")):
+			if (line.strip().startswith("printf") and C.FFLUSH):
 				data_lines[i] = line.replace("\n", " ") + "fflush(stdout);\n"
 	
 		with open(script_path.replace(".c", "_temp.c"), "w", encoding="utf-8") as f:
@@ -722,6 +727,8 @@ def main():
 			help="ptt will be silent (compiler, valgrind and tested script won't be)")
 	parser.add_argument("-n", "--no-colors", action="store_true", default=False,
 			help="Output is without any colors")
+	parser.add_argument("-q", "--quit-fflush", action="store_true", default=False,
+			help="Turn off adding 'fflush()' after every 'printf()' in script. Output would not be reachable for ptt if process ends by error.")
 	
 	args = parser.parse_args()
 	script_path = args.filename
@@ -744,6 +751,8 @@ def main():
 			C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
 			C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
 			return
+	if (args.quit_fflush):
+		C.fflush()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
