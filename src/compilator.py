@@ -36,7 +36,7 @@ class Compilator:
 			data_lines = f.readlines()
 
 		for i, line in enumerate(data_lines):
-			if (line.strip().startswith("printf")):
+			if (line.strip().startswith("printf") and C.FFLUSH):
 				data_lines[i] = line.replace("\n", " ") + "fflush(stdout);\n"
 	
 		with open(script_path.replace(".c", "_temp.c"), "w", encoding="utf-8") as f:

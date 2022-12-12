@@ -64,6 +64,8 @@ def main():
 			help="ptt will be silent (compiler, valgrind and tested script won't be)")
 	parser.add_argument("-n", "--no-colors", action="store_true", default=False,
 			help="Output is without any colors")
+	parser.add_argument("-q", "--quit-fflush", action="store_true", default=False,
+			help="Turn off adding 'fflush()' after every 'printf()' in script. Output would not be reachable for ptt if process ends by error.")
 	
 	args = parser.parse_args()
 	script_path = args.filename
@@ -86,6 +88,8 @@ def main():
 			C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
 			C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
 			return
+	if (args.quit_fflush):
+		C.fflush()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()

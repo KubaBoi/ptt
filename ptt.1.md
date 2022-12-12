@@ -2,15 +2,15 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.8
-date: December 8, 2022
+footer: ptt 1.0.11
+date: December 10, 2022
 ---
 
 # ProgTestTest
 ptt - Test tool for ProgTest from CVUT FIT
 
 # SYNOPSIS
-**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-l] [-L VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-g] [-m] [-s] [-n] filename
+**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-l] [-L VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-g] [-m] [-s] [-n] [-q] filename
 
 # DESCRIPTION
 **ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
@@ -69,6 +69,9 @@ You can generate own random datasets. Those are not for checking functionality o
 
 **-n, --no-colors**
 : Output of ptt is without any colors.
+
+**-q, --quit-fflush**
+: Turn off adding 'fflush()' after every 'printf()' in script. Output would not be reachable for ptt if process ends by error.
 
 # EXAMPLES
 **ptt cvika/ukol.c**

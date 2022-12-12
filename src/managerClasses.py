@@ -43,6 +43,7 @@ class C:
 	MILLI_SECONDS = False
 	RAW = False
 	TESTS = True
+	FFLUSH = True
 	
 	@staticmethod
 	def noColors():
@@ -69,3 +70,7 @@ class C:
 	@staticmethod
 	def prnt(*str):
 		if (not C.SILENT): print(*str)
+
+	@staticmethod
+	def fflush():
+		C.FFLUSH = False
