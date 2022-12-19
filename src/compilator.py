@@ -3,6 +3,7 @@ import os
 import subprocess
 
 from managerClasses import M, C
+from asmCompilator import AsmCompilator
 
 class Compilator:
 
@@ -44,6 +45,9 @@ class Compilator:
 
 	@staticmethod
 	def compile(script_path, compiler, compiler_args, is_one_file):
+		if (C.MODE):
+			return AsmCompilator.compile(script_path, compiler, compiler_args, is_one_file)
+		
 		Compilator.addFflush(script_path)
 
 		name = os.path.basename(script_path).replace(".c", "") + "_temp"
@@ -68,9 +72,4 @@ class Compilator:
 		if (os.path.exists(script_path.replace(".c", "_temp"))):
 			os.rename(script_path.replace(".c", "_temp"), script_path.replace(".c", ""))
 			
-
-		if (ret != 0):
-			C.prnt(f"{C.FAIL}{10*'='}Compilation process ended with code {C.OKCYAN}{ret}{C.FAIL}{10*'='}{C.ENDC}")
-		else:
-			C.prnt(f"{C.OKGREEN}{10*'='}Compilation process OK{10*'='}{C.ENDC}")
 		return ret

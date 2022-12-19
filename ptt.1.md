@@ -2,24 +2,26 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.11
-date: December 10, 2022
+footer: ptt 1.0.12
+date: December 19, 2022
 ---
 
 # ProgTestTest
 ptt - Test tool for ProgTest from CVUT FIT
 
 # SYNOPSIS
-**ptt** [-h] [-i] [-u] [-v] [-d DATA_PATH] [-l] [-L VAL_ARGS] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [-g] [-m] [-s] [-n] [-q] filename
+**ptt** [-h] [-v] [-d DATA_PATH] [-l] [-L VAL_ARGS] [-g] [-D VAL_DATA] [-c COMPILER] [-C COMPILER_ARGS] [-k] [--generate] [-o OUTPUT] [-r] [-t] [-m] [-s] [-n] [-q] filename
 
 # DESCRIPTION
-**ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind.
+**ptt** is simple script for testing your ProgTest. Via oneline shell command you can compile C/C++ script (by creating Makefile) and run them as single instance with user's input or as series of tests with dataset offered by ProgTest as .txt files. There is also option to run script under Valgrind or GDB.
 
 You can generate own random datasets. Those are not for checking functionality of your program but for checking of your memory management thanks to randomness.
 
+Same thing can be done with ASSEMBLER. More in **ASSEMBLER** section.
+
 # POSITIONAL ARGUMENTS
 **filename**
-: Path to C/C++ script.
+: Path to C/C++ or ASM script.
 
 # OPTIONS
 **-h, --help**
@@ -37,23 +39,26 @@ You can generate own random datasets. Those are not for checking functionality o
 **-L, --val-args**
 : Arguments for Valgrind as string and needs to start with \ .
 
+**-g, --gdb**
+: Script is runned under GDB.
+
 **-D, --val-data**
 : Data for Valgrind as string.
 
 **-c, --compiler**
-: Compiler (default is g++).
+: Compiler (default is g++ - for ASM nasm).
 
 **-C, --compiler-args**
-: Arguments for compiler (default is '-Wall -pedantic').
+: Arguments for compiler (default is '-Wall -pedantic' - for ASM -f elf64).
 
 **-k, --keep-links**
 : Keeps link (.o) files from compilation.
 
-**-g, --generate**
+**--generate**
 : Starts generator for new dataset. Asks for data regex template and how many files it should generate. More about regex in **REGEX FOR GENERATOR** section.
 
 **-o, --output**
-: Makes one .c file from all .h and .c source files. And runs this one .c file.
+: Makes one .c file from all .h and .c source files. And runs this one .c file. If script is ASM, ptt will not remove temporary file after compilation.
 
 **-r, --raw**
 : Runs tests but only prints output to terminal. Does not compare with anything.
@@ -162,6 +167,27 @@ Example of generated file:
 1, 5.192964977710644, 76.70838507583821
 :2,15s  
 ```
+
+# ASSEMBLER
+ptt is able to compile assembler code. If you want to make more files use **;import** keyword in your code. 
+
+## Examples
+For **main.s** file we want to import **math.s** from library with some procedures and **io.s** with macros. So **main.s** will looks like this.
+```
+;import lib/macros/io.s
+
+section	.text
+   global _start
+	
+;import lib/math.s
+
+_start:
+.
+.
+.	     
+```
+
+ptt will search for imports relative for **main.s** directory.
 
 # AUTHORS
 Written by Jakub Anderle

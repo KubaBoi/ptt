@@ -44,6 +44,10 @@ class C:
 	RAW = False
 	TESTS = True
 	FFLUSH = True
+	# 0 - C
+	# 1 - ASSEMBLER
+	MODE = 0 
+	POST_FIX = ".c"
 	
 	@staticmethod
 	def noColors():
@@ -74,3 +78,9 @@ class C:
 	@staticmethod
 	def fflush():
 		C.FFLUSH = False
+
+	@staticmethod
+	def assembler():
+		C.MODE = 1
+		C.POST_FIX = ".s"
+		C.fflush()

@@ -40,6 +40,8 @@ def main():
 			help="Script is runned under Valgrind")
 	parser.add_argument("-L", "--val-args", action="store", default="",
 			help="Arguments for Valgrind as string and needs to start with \\")
+	parser.add_argument("-g", "--gdb", action="store_true", default=False,
+			help="Script is runned under GDB")
 	parser.add_argument("-D", "--val-data", action="store", default="",
 			help="Data for Valgrind as string")
 	parser.add_argument("-c", "--compiler", action="store", default="g++",
@@ -49,10 +51,10 @@ def main():
 	parser.add_argument("-k", "--keep-links", action="store_true", default=False,
 			help="Keeps link (.o) files from compilation")
 
-	parser.add_argument("-g", "--generate", action="store_true", default=False,
+	parser.add_argument("--generate", action="store_true", default=False,
 			help="Starts generator for new dataset and then tests the script")
 	parser.add_argument("-o", "--output", action="store", default="",
-			help="Makes one .c file from all .h and .c source files. And runs this one .c file")
+			help="Makes one .c file from all .h and .c source files. And runs this one .c file. If script is ASM, ptt will not remove temporary file after compilation.")
 
 	parser.add_argument("-r", "--raw", action="store_true", default=False,
 			help="Runs tests but only prints output to terminal. Does not compare with anything")
@@ -70,6 +72,12 @@ def main():
 	args = parser.parse_args()
 	script_path = args.filename
 	is_one_file = False
+
+	if (script_path.endswith(".s")):
+		C.assembler()
+		if (args.compiler_args == "\\-Wall -pedantic"):
+			args.compiler_args = "\\-f elf64"
+
 	
 	if (args.no_colors):
 		C.noColors()
@@ -83,27 +91,33 @@ def main():
 		C.tests()
 	if (args.output != ""):
 		is_one_file = True
-		script_path = Builder.build(script_path, args.output)
-		if (script_path == 0): 
-			C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
-			C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
-			return
+		if (C.MODE == 0):
+			script_path = Builder.build(script_path, args.output)
+			if (script_path == 0): 
+				C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
+				C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
+				return
 	if (args.quit_fflush):
 		C.fflush()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
-		cmd = ["valgrind", f"{val_args}", f"./{script_path.replace('.c', '')}", f"{args.val_data}"]
+		cmd = ["valgrind", f"{val_args}", f"./{script_path.replace(C.POST_FIX, '')}", f"{args.val_data}"]
+	elif (args.gdb):
+		cmd = ["gdb", f"./{script_path.replace(C.POST_FIX, '')}"]
 	else:
-		cmd = [f"./{script_path.replace('.c', '')}"]
+		cmd = [f"./{script_path.replace(C.POST_FIX, '')}"]
 	
 	while ("" in cmd):
 		cmd.remove("")
 	
 	compiler = args.compiler
 	compiler_args = args.compiler_args.replace("\\", "").split(" ")
-	
-	if (Compilator.compile(script_path, compiler, compiler_args, is_one_file) == 0):
+
+	compil = Compilator.compile(script_path, compiler, compiler_args, is_one_file)
+	if (compil == 0):
+		C.prnt(f"{C.OKGREEN}{10*'='}Compilation process OK{10*'='}{C.ENDC}")
+		
 		if (not args.keep_links):
 			Compilator.removeLinks(script_path)
 	
@@ -119,13 +133,16 @@ def main():
 		C.prnt("Valgrind:", args.valgrind)
 		C.prnt("Valgrind args:", args.val_args)
 		C.prnt("")
-		if ("-Wall" not in compiler_args or "-pedantic" not in compiler_args):
-			C.prnt(f"{C.WARNING}WARNING - there is missing -Wall or -pedantic in compilation{C.ENDC}")
-		if (not args.valgrind):
-			if (args.val_args != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-L) specified but valgrind (-l) is not enabled{C.ENDC}")
-			if (args.val_data != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-l) is not enabled{C.ENDC}")
+		if (C.MODE == 0):
+			if ("-Wall" not in compiler_args or "-pedantic" not in compiler_args):
+				C.prnt(f"{C.WARNING}WARNING - there is missing -Wall or -pedantic in compilation{C.ENDC}")
+			if (not args.valgrind):
+				if (args.val_args != ""):
+					C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-L) specified but valgrind (-l) is not enabled{C.ENDC}")
+				if (args.val_data != ""):
+					C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-l) is not enabled{C.ENDC}")
+	else:
+		C.prnt(f"{C.FAIL}{10*'='}Compilation process ended with code {C.OKCYAN}{compil}{C.FAIL}{10*'='}{C.ENDC}")
 
 if (__name__ == "__main__"):
 	args = args = sys.argv
