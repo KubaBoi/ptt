@@ -2,7 +2,7 @@
 title: ProgTestTest
 section: 1
 header: User Manual
-footer: ptt 1.0.15
+footer: ptt 1.0.16
 date: December 19, 2022
 ---
 
@@ -37,7 +37,7 @@ Same thing can be done with ASSEMBLER. More in **ASSEMBLER** section.
 : Script is runned under Valgrind.
 
 **-L, --val-args**
-: Arguments for Valgrind as string and needs to start with \ .
+: Arguments for Valgrind as string and needs to start with \\.
 
 **-g, --gdb**
 : Script is runned under GDB.
@@ -49,7 +49,7 @@ Same thing can be done with ASSEMBLER. More in **ASSEMBLER** section.
 : Compiler (default is g++ - for ASM nasm).
 
 **-C, --compiler-args**
-: Arguments for compiler (default is '-Wall -pedantic' - for ASM -f elf64).
+: Arguments for compiler (default is '-Wall -pedantic' - for ASM '-f elf64').
 
 **-k, --keep-links**
 : Keeps link (.o) files from compilation.
