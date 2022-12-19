@@ -77,6 +77,8 @@ def main():
 		C.assembler()
 		if (args.compiler_args == "\\-Wall -pedantic"):
 			args.compiler_args = "\\-f elf64"
+		if (args.compiler == "g++"):
+			args.compiler = "nasm"
 
 	
 	if (args.no_colors):
