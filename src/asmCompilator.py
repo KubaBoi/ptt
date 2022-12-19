@@ -29,10 +29,10 @@ class AsmCompilator:
                     if (parts[i] not in AsmCompilator.added_files):
                         if (os.path.exists(parts[i])):
                             line += AsmCompilator.findModules(parts[i])
-                            print(parts[i])
+                            C.prnt("found: ", parts[i])
                             AsmCompilator.added_files.append(parts[i])
                         else:
-                            print(f"ERROR: {parts[i]} does not exists.")
+                            C.prnt(f"ERROR: {parts[i]} does not exists.")
                             exit(1)
             content += line
 
@@ -41,10 +41,12 @@ class AsmCompilator:
     @staticmethod
     def removeFiles(temp_name, link_name, is_one_file):
         if (not is_one_file and os.path.exists(temp_name)):
+            C.prnt("Removing temporary file...")
             os.remove(temp_name)
 
     @staticmethod
     def compile(script_path, compiler, compiler_args, is_one_file):
+        C.prnt("Finding modules...")
         content = AsmCompilator.findModules(script_path) 
         name = script_path.replace(C.POST_FIX, '')
         temp_name = script_path.replace(C.POST_FIX, '_temp.s')
@@ -52,8 +54,10 @@ class AsmCompilator:
         with open(f"{temp_name}", "w") as f:
             f.write(content)
 
+        C.prnt("Assembling...")
         ret = subprocess.call([compiler, *compiler_args, temp_name])      
         if (ret == 0):
+            C.prnt("Linking...")
             ret = subprocess.call(["ld", f"-o", name, link_name])
         AsmCompilator.removeFiles(temp_name, link_name, is_one_file)
         return ret
