@@ -26,7 +26,7 @@ $(NAME): $(OBJFILES)
 	"""
 
 class V:
-	VERSION = "1.0.11"
+	VERSION = "1.0.12"
 
 class C:
 	HEADER = '\033[95m'

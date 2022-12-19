@@ -2,19 +2,172 @@
 """
 Test tool for ProgTests from CVUT FIT
 
-version: 1.0.11
+version: 1.0.12
 """
 __docformat__ = "reStructedText"
 
-import sys
-import subprocess
-import argparse
 import os
-import time
-import inspect
 import random
+import subprocess
 import math
 import string
+import sys
+import argparse
+import time
+import inspect
+
+class Generator:
+    """
+    Class for dataset generation
+
+    Regex:
+        as scanf in c/c++
+
+    Range:
+        Every value can have a range
+
+        If range not included then it is totaly random value
+
+        Example:
+            %0,5d - decimal number from 0 to 5 (5 not included)
+            %10,500s - string with length from 10 to 500 characters (500 included because ending zero)
+    
+        Groups:
+            $(%5,12d - %10s - %f\n)5,10$ 
+            
+                - 5 to 10 lines with 
+                one decimal from 5 to 12, string length 10 and random float
+
+            $(%0,250d,%1,8f,%-10.54,150g\n)5,9$:%2,15s
+
+                - 5 to 9 lines with decimal, float, double 
+                and at the end is one 2 to 15 characters long string
+    """
+
+    SPECS = {
+        "c": "char",
+        "d": "decimal",
+        "s": "string",
+        "g": "double",
+        "f": "flt",
+        "o": "octa",
+        "u": "unsigned",
+        "x": "hexa",
+        "X": "hexA"
+    }
+
+    def __init__(self):
+        #self.reg = "$(%0,250d,%100,8000x,%100,8000X,%o,%-10.54,150g\n)5,9$:%2,15s"
+        self.reg = input("Regex for your test data: ")
+        self.reg = self.reg.replace("\\n", "\n")
+        self.reg = self.reg.replace("\\t", "\t")
+
+    def findSpecs(self, reg):
+        specsValues = []
+
+        ignore = -1
+        for i, char in enumerate(reg):
+            if (i <= ignore): 
+                if (ignore == i): ignore = -1
+                continue
+
+            if (char == "\\"):
+                ignore = i + 1
+            elif (char == "%"):
+                val = char
+                start_index = i
+                i += 1
+                char = reg[i]
+                while (char.isnumeric() or char == "-" or char == "." or char == ","):
+                    val += char
+                    i += 1
+                    if (i >= len(reg)): 
+                        raise InvalidRegex(f"Missing end of regex specification at {start_index} position")
+                    char = reg[i]
+
+                if (char not in self.SPECS.keys()):
+                    raise InvalidRegex(f"Uknown regex specification at {start_index} position")
+                val += char
+                specsValues.append(val)
+            elif (char == "$"):
+                val = char
+                start_index = i
+                i += 1
+                char = reg[i]
+                if (char != "("):
+                    continue
+
+                while (char != "$"):
+                    val += char
+                    i += 1
+                    if (i >= len(reg)):
+                        raise InvalidRegex(f"Missing end of group regex specification at {start_index} position")
+                    char = reg[i]
+                
+                ignore = i
+                val += char
+                rng = val.replace("$", "").split(")")[-1]
+                valS = val.replace("$(", "").replace(f"){rng}$", "")
+                specsValues.append([rng, self.findSpecs(valS), val])
+        return specsValues
+
+    def getName(self, number, count):
+        s_number = str(number)
+        s_count = str(count)
+
+        val = ""
+        for i in range(len(s_count) - len(s_number)):
+            val += "0"
+        val += s_number + "_in.txt"
+        return val
+
+    def generateOne(self, reg, specs):
+        for val in specs:
+            if (isinstance(val, list)):
+                min, max = Specifier.findLimits(val[0], 0, 1000)
+                cnt = random.randrange(int(min), int(max))
+                vr = ""
+                for i in range(cnt):
+                    vr += self.generateOne(val[2], val[1])
+                vr = vr.replace("$(", "").replace(f"){val[0]}$", "")
+                val = val[2]
+            else:
+                fcn = getattr(Specifier, self.SPECS[val[-1]])
+                vr = fcn(val) 
+            index = reg.find(val)
+            reg = reg[:index] + vr + reg[index + len(val):]
+        return reg
+
+    def generate(self, count=100):
+        self.specsValues = self.findSpecs(self.reg)
+        pth = "./SamplesPPT"
+
+        if (os.path.exists(pth)):
+            if (os.path.isdir(pth)):
+                i = input(f"{pth} directory already exists. Do you want to continue? [y/n]: ")
+                if (i != "y"): return 1
+            else:
+                print(f"{pth} already exists and it is not a directory.")
+                return 1
+        else:
+            os.mkdir(pth)
+
+        print(f"Generating {count} files...")
+        self.printProgressBar(0, count, "Generating:", "Done:", length=50)
+        for i in range(count):
+            data = self.generateOne(self.reg, self.specsValues)
+            with open(os.path.join(pth, self.getName(i, count)), "w") as f:
+                f.write(data)
+            self.printProgressBar(i+1, count, "Generating:", "Done:", length=50)
+
+    def printProgressBar(self, iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+        percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+        filledLength = int(length * iteration // total)
+        bar = fill * filledLength + '-' * (length - filledLength)
+        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+        # Print New Line on Complete
+        if iteration == total: 
+            print()
 
 class Builder:
 
@@ -126,6 +279,152 @@ class Builder:
         
 
 
+
+
+
+class AsmCompilator:
+
+    added_files = []
+
+    @staticmethod
+    def findModules(script_path):
+        file_path = os.path.abspath(script_path)
+        dir_path = os.path.dirname(file_path)
+
+        with open(file_path, "r") as f:
+            data_lines = f.readlines()
+
+        content = ""
+        for line in data_lines:
+            if (line.startswith(";import")):
+                parts = line.split(" ")
+
+                while " " in parts: 
+                    parts.remove("")
+                line = ""
+                for i in range(1, len(parts)):
+                    parts[i] = os.path.join(dir_path, parts[i].strip())
+                    if (parts[i] not in AsmCompilator.added_files):
+                        if (os.path.exists(parts[i])):
+                            line += AsmCompilator.findModules(parts[i])
+                            print(parts[i])
+                            AsmCompilator.added_files.append(parts[i])
+                        else:
+                            print(f"ERROR: {parts[i]} does not exists.")
+                            exit(1)
+            content += line
+
+        return content + "\n\n"
+
+    @staticmethod
+    def removeFiles(temp_name, link_name, is_one_file):
+        if (not is_one_file and os.path.exists(temp_name)):
+            os.remove(temp_name)
+
+    @staticmethod
+    def compile(script_path, compiler, compiler_args, is_one_file):
+        content = AsmCompilator.findModules(script_path) 
+        name = script_path.replace(C.POST_FIX, '')
+        temp_name = script_path.replace(C.POST_FIX, '_temp.s')
+        link_name = temp_name.replace(C.POST_FIX, '.o')
+        with open(f"{temp_name}", "w") as f:
+            f.write(content)
+
+        ret = subprocess.call([compiler, *compiler_args, temp_name])      
+        if (ret == 0):
+            ret = subprocess.call(["ld", f"-o", name, link_name])
+        AsmCompilator.removeFiles(temp_name, link_name, is_one_file)
+        return ret
+
+
+class InvalidRegex(Exception):
+    def __init__(self, description):
+        super().__init__(self, "Invalid regex", description)
+
+
+class Specifier:
+
+    @staticmethod
+    def findLimits(val, min, max):
+        limits = val.split(",")
+        if (val != ""):
+            if (len(limits) == 1):
+                min = 0
+                max = float(limits[0])
+            else:
+                min = float(limits[0])
+                max = float(limits[1])
+        return min, max
+
+    @staticmethod
+    def char(val):
+        val = val.replace("%", "").replace("c", "")
+        return random.choice(string.ascii_letters)
+
+    @staticmethod
+    def decimal(val):
+        val = val.replace("%", "").replace("d", "")
+        min, max = Specifier.findLimits(val, -32768, 32768)
+
+        return str(random.randrange(int(min), int(max)))
+
+    @staticmethod
+    def string(val):
+        val = val.replace("%", "").replace("s", "")
+        min, max = Specifier.findLimits(val, -1, 100)
+
+        if (min != -1):
+            length = random.randrange(int(min), int(max))
+        else:
+            length = max
+
+        return "".join(random.choices(string.ascii_letters + string.digits,
+                k=length))
+
+    @staticmethod
+    def double(val):
+        val = val.replace("%", "").replace("g", "")
+        min, max = Specifier.findLimits(val,
+            2.3*math.pow(10, -308),
+            1.7*math.pow(10, 308))
+        
+        return str(random.uniform(min, max))
+
+    @staticmethod
+    def flt(val):
+        val = val.replace("%", "").replace("f", "")
+        min, max = Specifier.findLimits(val,
+            1.2*math.pow(10, -38),
+            3.4*math.pow(10, 38))
+        
+        return str(random.uniform(min, max))
+
+    @staticmethod
+    def octa(val):
+        val = val.replace("%", "").replace("o", "")
+        s = Specifier.decimal(val)
+        return oct(int(s))
+
+    @staticmethod
+    def unsigned(val):
+        val = val.replace("%", "").replace("u", "")
+        min, max = Specifier.findLimits(val, 0, 65536)
+
+        if (min < 0): min = 0
+
+        return str(random.randrange(int(min), int(max)))
+
+    @staticmethod
+    def hexa(val):
+        val = val.replace("%", "").replace("x", "")
+        s = Specifier.decimal(val)
+        return hex(int(s))
+
+    @staticmethod
+    def hexA(val):
+        val = val.replace("%", "").replace("X", "")
+        s = Specifier.decimal(val)
+        return hex(int(s)).upper()
 
 
 
@@ -287,174 +586,6 @@ class Runner:
 
 
 
-class M:
-	MAKE_FILE_TEMP = """
-# MAKEFILE GENERATED BY PTT
-# https://github.com/KubaBoi/ptt
-
-NAME=$NAME$
-OBJFILES=$(NAME).o $MODULES$
-
-CC=$COMPILER$
-CFLAGS= $COMPILER_ARGS$
-
-%.o : %.c 
-	$(CC) $(CFLAGS) -c $<
-
-all: $(NAME)
-
-dep:
-	$(CC) -MM *.c >dep.list
-
--include dep.list
-
-$(NAME): $(OBJFILES)
-	$(CC) $(CFLAGS) $(OBJFILES) -o $@
-	"""
-
-
-class V:
-	VERSION = "1.0.11"
-
-
-class C:
-	HEADER = '\033[95m'
-	OKBLUE = '\033[94m'
-	OKCYAN = '\033[96m'
-	OKGREEN = '\033[92m'
-	WARNING = '\033[93m'
-	FAIL = '\033[91m'
-	ENDC = '\033[0m'
-	BOLD = '\033[1m'
-	UNDERLINE = '\033[4m'
-	
-	SILENT = False
-	MILLI_SECONDS = False
-	RAW = False
-	TESTS = True
-	FFLUSH = True
-	
-	@staticmethod
-	def noColors():
-		members = inspect.getmembers(C, lambda a:not(inspect.isroutine(a)))
-		for i in members:
-			if (i[0][0] != "_"): setattr(C, i[0], "")
-			
-	@staticmethod
-	def silent():
-		C.SILENT = True
-		
-	@staticmethod
-	def milliseconds():
-		C.MILLI_SECONDS = True
-
-	@staticmethod
-	def raw():
-		C.RAW = True
-
-	@staticmethod
-	def tests():
-		C.TESTS = False
-			
-	@staticmethod
-	def prnt(*str):
-		if (not C.SILENT): print(*str)
-
-	@staticmethod
-	def fflush():
-		C.FFLUSH = False
-
-class InvalidRegex(Exception):
-    def __init__(self, description):
-        super().__init__(self, "Invalid regex", description)
-
-
-class Specifier:
-
-    @staticmethod
-    def findLimits(val, min, max):
-        limits = val.split(",")
-        if (val != ""):
-            if (len(limits) == 1):
-                min = 0
-                max = float(limits[0])
-            else:
-                min = float(limits[0])
-                max = float(limits[1])
-        return min, max
-
-    @staticmethod
-    def char(val):
-        val = val.replace("%", "").replace("c", "")
-        return random.choice(string.ascii_letters)
-
-    @staticmethod
-    def decimal(val):
-        val = val.replace("%", "").replace("d", "")
-        min, max = Specifier.findLimits(val, -32768, 32768)
-
-        return str(random.randrange(int(min), int(max)))
-
-    @staticmethod
-    def string(val):
-        val = val.replace("%", "").replace("s", "")
-        min, max = Specifier.findLimits(val, -1, 100)
-
-        if (min != -1):
-            length = random.randrange(int(min), int(max))
-        else:
-            length = max
-
-        return "".join(random.choices(string.ascii_letters + string.digits,
-                k=length))
-
-    @staticmethod
-    def double(val):
-        val = val.replace("%", "").replace("g", "")
-        min, max = Specifier.findLimits(val,
-            2.3*math.pow(10, -308),
-            1.7*math.pow(10, 308))
-        
-        return str(random.uniform(min, max))
-
-    @staticmethod
-    def flt(val):
-        val = val.replace("%", "").replace("f", "")
-        min, max = Specifier.findLimits(val,
-            1.2*math.pow(10, -38),
-            3.4*math.pow(10, 38))
-        
-        return str(random.uniform(min, max))
-
-    @staticmethod
-    def octa(val):
-        val = val.replace("%", "").replace("o", "")
-        s = Specifier.decimal(val)
-        return oct(int(s))
-
-    @staticmethod
-    def unsigned(val):
-        val = val.replace("%", "").replace("u", "")
-        min, max = Specifier.findLimits(val, 0, 65536)
-
-        if (min < 0): min = 0
-
-        return str(random.randrange(int(min), int(max)))
-
-    @staticmethod
-    def hexa(val):
-        val = val.replace("%", "").replace("x", "")
-        s = Specifier.decimal(val)
-        return hex(int(s))
-
-    @staticmethod
-    def hexA(val):
-        val = val.replace("%", "").replace("X", "")
-        s = Specifier.decimal(val)
-        return hex(int(s)).upper()
-
-
-
 class Compilator:
 
 	@staticmethod
@@ -495,6 +626,9 @@ class Compilator:
 
 	@staticmethod
 	def compile(script_path, compiler, compiler_args, is_one_file):
+		if (C.MODE):
+			return AsmCompilator.compile(script_path, compiler, compiler_args, is_one_file)
+		
 		Compilator.addFflush(script_path)
 
 		name = os.path.basename(script_path).replace(".c", "") + "_temp"
@@ -519,166 +653,95 @@ class Compilator:
 		if (os.path.exists(script_path.replace(".c", "_temp"))):
 			os.rename(script_path.replace(".c", "_temp"), script_path.replace(".c", ""))
 			
-
-		if (ret != 0):
-			C.prnt(f"{C.FAIL}{10*'='}Compilation process ended with code {C.OKCYAN}{ret}{C.FAIL}{10*'='}{C.ENDC}")
-		else:
-			C.prnt(f"{C.OKGREEN}{10*'='}Compilation process OK{10*'='}{C.ENDC}")
 		return ret
 
 
-class Generator:
-    """
-    Class for dataset generation
+class M:
+	MAKE_FILE_TEMP = """
+# MAKEFILE GENERATED BY PTT
+# https://github.com/KubaBoi/ptt
 
-    Regex:
-        as scanf in c/c++
+NAME=$NAME$
+OBJFILES=$(NAME).o $MODULES$
 
-    Range:
-        Every value can have a range
+CC=$COMPILER$
+CFLAGS= $COMPILER_ARGS$
 
-        If range not included then it is totaly random value
+%.o : %.c 
+	$(CC) $(CFLAGS) -c $<
 
-        Example:
-            %0,5d - decimal number from 0 to 5 (5 not included)
-            %10,500s - string with length from 10 to 500 characters (500 included because ending zero)
-    
-        Groups:
-            $(%5,12d - %10s - %f\n)5,10$ 
-            
-                - 5 to 10 lines with 
-                one decimal from 5 to 12, string length 10 and random float
+all: $(NAME)
 
-            $(%0,250d,%1,8f,%-10.54,150g\n)5,9$:%2,15s
+dep:
+	$(CC) -MM *.c >dep.list
 
-                - 5 to 9 lines with decimal, float, double 
-                and at the end is one 2 to 15 characters long string
-    """
+-include dep.list
 
-    SPECS = {
-        "c": "char",
-        "d": "decimal",
-        "s": "string",
-        "g": "double",
-        "f": "flt",
-        "o": "octa",
-        "u": "unsigned",
-        "x": "hexa",
-        "X": "hexA"
-    }
+$(NAME): $(OBJFILES)
+	$(CC) $(CFLAGS) $(OBJFILES) -o $@
+	"""
 
-    def __init__(self):
-        #self.reg = "$(%0,250d,%100,8000x,%100,8000X,%o,%-10.54,150g\n)5,9$:%2,15s"
-        self.reg = input("Regex for your test data: ")
-        self.reg = self.reg.replace("\\n", "\n")
-        self.reg = self.reg.replace("\\t", "\t")
 
-    def findSpecs(self, reg):
-        specsValues = []
+class V:
+	VERSION = "1.0.12"
 
-        ignore = -1
-        for i, char in enumerate(reg):
-            if (i <= ignore): 
-                if (ignore == i): ignore = -1
-                continue
 
-            if (char == "\\"):
-                ignore = i + 1
-            elif (char == "%"):
-                val = char
-                start_index = i
-                i += 1
-                char = reg[i]
-                while (char.isnumeric() or char == "-" or char == "." or char == ","):
-                    val += char
-                    i += 1
-                    if (i >= len(reg)): 
-                        raise InvalidRegex(f"Missing end of regex specification at {start_index} position")
-                    char = reg[i]
+class C:
+	HEADER = '\033[95m'
+	OKBLUE = '\033[94m'
+	OKCYAN = '\033[96m'
+	OKGREEN = '\033[92m'
+	WARNING = '\033[93m'
+	FAIL = '\033[91m'
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
+	
+	SILENT = False
+	MILLI_SECONDS = False
+	RAW = False
+	TESTS = True
+	FFLUSH = True
+	# 0 - C
+	# 1 - ASSEMBLER
+	MODE = 0 
+	POST_FIX = ".c"
+	
+	@staticmethod
+	def noColors():
+		members = inspect.getmembers(C, lambda a:not(inspect.isroutine(a)))
+		for i in members:
+			if (i[0][0] != "_"): setattr(C, i[0], "")
+			
+	@staticmethod
+	def silent():
+		C.SILENT = True
+		
+	@staticmethod
+	def milliseconds():
+		C.MILLI_SECONDS = True
 
-                if (char not in self.SPECS.keys()):
-                    raise InvalidRegex(f"Uknown regex specification at {start_index} position")
-                val += char
-                specsValues.append(val)
-            elif (char == "$"):
-                val = char
-                start_index = i
-                i += 1
-                char = reg[i]
-                if (char != "("):
-                    continue
+	@staticmethod
+	def raw():
+		C.RAW = True
 
-                while (char != "$"):
-                    val += char
-                    i += 1
-                    if (i >= len(reg)):
-                        raise InvalidRegex(f"Missing end of group regex specification at {start_index} position")
-                    char = reg[i]
-                
-                ignore = i
-                val += char
-                rng = val.replace("$", "").split(")")[-1]
-                valS = val.replace("$(", "").replace(f"){rng}$", "")
-                specsValues.append([rng, self.findSpecs(valS), val])
-        return specsValues
+	@staticmethod
+	def tests():
+		C.TESTS = False
+			
+	@staticmethod
+	def prnt(*str):
+		if (not C.SILENT): print(*str)
 
-    def getName(self, number, count):
-        s_number = str(number)
-        s_count = str(count)
+	@staticmethod
+	def fflush():
+		C.FFLUSH = False
 
-        val = ""
-        for i in range(len(s_count) - len(s_number)):
-            val += "0"
-        val += s_number + "_in.txt"
-        return val
-
-    def generateOne(self, reg, specs):
-        for val in specs:
-            if (isinstance(val, list)):
-                min, max = Specifier.findLimits(val[0], 0, 1000)
-                cnt = random.randrange(int(min), int(max))
-                vr = ""
-                for i in range(cnt):
-                    vr += self.generateOne(val[2], val[1])
-                vr = vr.replace("$(", "").replace(f"){val[0]}$", "")
-                val = val[2]
-            else:
-                fcn = getattr(Specifier, self.SPECS[val[-1]])
-                vr = fcn(val) 
-            index = reg.find(val)
-            reg = reg[:index] + vr + reg[index + len(val):]
-        return reg
-
-    def generate(self, count=100):
-        self.specsValues = self.findSpecs(self.reg)
-        pth = "./SamplesPPT"
-
-        if (os.path.exists(pth)):
-            if (os.path.isdir(pth)):
-                i = input(f"{pth} directory already exists. Do you want to continue? [y/n]: ")
-                if (i != "y"): return 1
-            else:
-                print(f"{pth} already exists and it is not a directory.")
-                return 1
-        else:
-            os.mkdir(pth)
-
-        print(f"Generating {count} files...")
-        self.printProgressBar(0, count, "Generating:", "Done:", length=50)
-        for i in range(count):
-            data = self.generateOne(self.reg, self.specsValues)
-            with open(os.path.join(pth, self.getName(i, count)), "w") as f:
-                f.write(data)
-            self.printProgressBar(i+1, count, "Generating:", "Done:", length=50)
-
-    def printProgressBar(self, iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
-        percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-        filledLength = int(length * iteration // total)
-        bar = fill * filledLength + '-' * (length - filledLength)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
-        # Print New Line on Complete
-        if iteration == total: 
-            print()
+	@staticmethod
+	def assembler():
+		C.MODE = 1
+		C.POST_FIX = ".s"
+		C.fflush()
 
 
 def main():
@@ -703,6 +766,8 @@ def main():
 			help="Script is runned under Valgrind")
 	parser.add_argument("-L", "--val-args", action="store", default="",
 			help="Arguments for Valgrind as string and needs to start with \\")
+	parser.add_argument("-g", "--gdb", action="store_true", default=False,
+			help="Script is runned under GDB")
 	parser.add_argument("-D", "--val-data", action="store", default="",
 			help="Data for Valgrind as string")
 	parser.add_argument("-c", "--compiler", action="store", default="g++",
@@ -712,10 +777,10 @@ def main():
 	parser.add_argument("-k", "--keep-links", action="store_true", default=False,
 			help="Keeps link (.o) files from compilation")
 
-	parser.add_argument("-g", "--generate", action="store_true", default=False,
+	parser.add_argument("--generate", action="store_true", default=False,
 			help="Starts generator for new dataset and then tests the script")
 	parser.add_argument("-o", "--output", action="store", default="",
-			help="Makes one .c file from all .h and .c source files. And runs this one .c file")
+			help="Makes one .c file from all .h and .c source files. And runs this one .c file. If script is ASM, ptt will not remove temporary file after compilation.")
 
 	parser.add_argument("-r", "--raw", action="store_true", default=False,
 			help="Runs tests but only prints output to terminal. Does not compare with anything")
@@ -733,6 +798,12 @@ def main():
 	args = parser.parse_args()
 	script_path = args.filename
 	is_one_file = False
+
+	if (script_path.endswith(".s")):
+		C.assembler()
+		if (args.compiler_args == "\\-Wall -pedantic"):
+			args.compiler_args = "\\-f elf64"
+
 	
 	if (args.no_colors):
 		C.noColors()
@@ -746,27 +817,33 @@ def main():
 		C.tests()
 	if (args.output != ""):
 		is_one_file = True
-		script_path = Builder.build(script_path, args.output)
-		if (script_path == 0): 
-			C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
-			C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
-			return
+		if (C.MODE == 0):
+			script_path = Builder.build(script_path, args.output)
+			if (script_path == 0): 
+				C.prnt(f"{C.WARNING}Cannot make one file source code because{C.ENDC}")
+				C.prnt(f"{C.WARNING}chosen name is same as main script.{C.ENDC}")
+				return
 	if (args.quit_fflush):
 		C.fflush()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
-		cmd = ["valgrind", f"{val_args}", f"./{script_path.replace('.c', '')}", f"{args.val_data}"]
+		cmd = ["valgrind", f"{val_args}", f"./{script_path.replace(C.POST_FIX, '')}", f"{args.val_data}"]
+	elif (args.gdb):
+		cmd = ["gdb", f"./{script_path.replace(C.POST_FIX, '')}"]
 	else:
-		cmd = [f"./{script_path.replace('.c', '')}"]
+		cmd = [f"./{script_path.replace(C.POST_FIX, '')}"]
 	
 	while ("" in cmd):
 		cmd.remove("")
 	
 	compiler = args.compiler
 	compiler_args = args.compiler_args.replace("\\", "").split(" ")
-	
-	if (Compilator.compile(script_path, compiler, compiler_args, is_one_file) == 0):
+
+	compil = Compilator.compile(script_path, compiler, compiler_args, is_one_file)
+	if (compil == 0):
+		C.prnt(f"{C.OKGREEN}{10*'='}Compilation process OK{10*'='}{C.ENDC}")
+		
 		if (not args.keep_links):
 			Compilator.removeLinks(script_path)
 	
@@ -782,13 +859,16 @@ def main():
 		C.prnt("Valgrind:", args.valgrind)
 		C.prnt("Valgrind args:", args.val_args)
 		C.prnt("")
-		if ("-Wall" not in compiler_args or "-pedantic" not in compiler_args):
-			C.prnt(f"{C.WARNING}WARNING - there is missing -Wall or -pedantic in compilation{C.ENDC}")
-		if (not args.valgrind):
-			if (args.val_args != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-L) specified but valgrind (-l) is not enabled{C.ENDC}")
-			if (args.val_data != ""):
-				C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-l) is not enabled{C.ENDC}")
+		if (C.MODE == 0):
+			if ("-Wall" not in compiler_args or "-pedantic" not in compiler_args):
+				C.prnt(f"{C.WARNING}WARNING - there is missing -Wall or -pedantic in compilation{C.ENDC}")
+			if (not args.valgrind):
+				if (args.val_args != ""):
+					C.prnt(f"{C.WARNING}WARNING - there are valgrind arguments (-L) specified but valgrind (-l) is not enabled{C.ENDC}")
+				if (args.val_data != ""):
+					C.prnt(f"{C.WARNING}WARNING - there are valgrind data (-D) specified but valgrind (-l) is not enabled{C.ENDC}")
+	else:
+		C.prnt(f"{C.FAIL}{10*'='}Compilation process ended with code {C.OKCYAN}{compil}{C.FAIL}{10*'='}{C.ENDC}")
 
 if (__name__ == "__main__"):
 	args = args = sys.argv
