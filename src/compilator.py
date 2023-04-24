@@ -41,12 +41,8 @@ class Compilator:
 		for i, line in enumerate(data_lines):
 			if (line.strip().startswith("printf") and C.FFLUSH):
 				data_lines[i] = line.replace("\n", " ") + "fflush(stdout);\n"
-
-		end = ".c"
-		if (script_path.endswith(".cpp")):
-			end = ".cpp"
 	
-		with open(script_path.replace(end, "_temp" + end), "w", encoding="utf-8") as f:
+		with open(script_path.replace(C.POST_FIX, "_temp" + C.POST_FIX), "w", encoding="utf-8") as f:
 			f.write("".join(data_lines))
 
 	@staticmethod
@@ -56,11 +52,7 @@ class Compilator:
 		
 		Compilator.addFflush(script_path)
 
-		end = ".c"
-		if (script_path.endswith(".cpp")):
-			end = ".cpp"
-
-		name = os.path.basename(script_path).replace(end, "") + "_temp"
+		name = os.path.basename(script_path).replace(C.POST_FIX, "") + "_temp"
 		
 		if (not is_one_file):
 			modules = Compilator.findModules(script_path)
@@ -78,8 +70,8 @@ class Compilator:
 		else:
 			ret = subprocess.call([compiler, *compiler_args, script_path, "-o", name])
 
-		os.remove(script_path.replace(end, "_temp" + end))
-		if (os.path.exists(script_path.replace(end, "_temp"))):
-			os.rename(script_path.replace(end, "_temp"), script_path.replace(end, ""))
+		os.remove(script_path.replace(C.POST_FIX, "_temp" + C.POST_FIX))
+		if (os.path.exists(script_path.replace(C.POST_FIX, "_temp"))):
+			os.rename(script_path.replace(C.POST_FIX, "_temp"), script_path.replace(C.POST_FIX, ""))
 			
 		return ret

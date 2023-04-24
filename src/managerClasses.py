@@ -80,6 +80,10 @@ class C:
 		C.FFLUSH = False
 
 	@staticmethod
+	def cpp():
+		C.POST_FIX = ".cpp"
+
+	@staticmethod
 	def assembler():
 		C.MODE = 1
 		C.POST_FIX = ".s"

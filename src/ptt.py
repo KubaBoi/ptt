@@ -101,6 +101,8 @@ def main():
 				return
 	if (args.quit_fflush):
 		C.fflush()
+	if (script_path.endswith(".cpp")):
+		C.cpp()
 	
 	if (args.valgrind):
 		val_args = args.val_args.replace("\\", "").strip()
