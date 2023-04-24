@@ -69,6 +69,9 @@ class Builder:
 
         src_name = header_name[:-1] + "c"
         hasSrc = os.path.exists(os.path.join(dir_name, src_name))
+        if (not hasSrc):
+            src_name = header_name[:-1] + "cpp"
+            hasSrc = os.path.exists(os.path.join(dir_name, src_name))
 
         with open(os.path.join(dir_name, header_name), "r", encoding="utf-8") as f:
             header_lines = f.readlines()
